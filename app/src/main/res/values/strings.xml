@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">Worldquiz_App</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_name">Worldquiz</string>
+    <string name="title_home">Menu</string>
+    <string name="title_dashboard">Tablas</string>
+    <string name="title_notifications">Notificaciones</string>
+    <string name="btn_login">Iniciar Sesión</string>
 </resources>

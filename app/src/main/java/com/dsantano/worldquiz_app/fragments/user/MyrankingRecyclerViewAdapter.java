@@ -6,10 +6,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dsantano.worldquiz_app.R;
 import com.dsantano.worldquiz_app.fragments.user.dummy.DummyContent.DummyItem;
+import com.dsantano.worldquiz_app.models.Users;
 
 import java.util.List;
 
@@ -18,10 +20,10 @@ public class MyrankingRecyclerViewAdapter extends RecyclerView.Adapter<Myranking
 
     Context ctx;
     int layoutTemplate;
-    List<DummyItem> listData;
+    List<Users> listData;
 
 
-    public MyrankingRecyclerViewAdapter(Context ctx, int layoutTemplate, List<DummyItem> listData) {
+    public MyrankingRecyclerViewAdapter(Context ctx, int layoutTemplate, List<Users> listData) {
         this.ctx = ctx;
         this.layoutTemplate = layoutTemplate;
         this.listData = listData;
@@ -47,15 +49,19 @@ public class MyrankingRecyclerViewAdapter extends RecyclerView.Adapter<Myranking
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public DummyItem mItem;
+        public final TextView tvName;
+        public final TextView tvScore;
+        public final TextView tvGame;
+        public final ImageView ivPhoto;
+        public Users mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            tvName = view.findViewById(R.id.textViewUsername);
+            tvGame = view.findViewById(R.id.textViewGames);
+            tvScore = view.findViewById(R.id.textViewScore);
+            ivPhoto = view.findViewById(R.id.imageViewPhoto);
         }
 
 

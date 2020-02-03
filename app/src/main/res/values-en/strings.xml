@@ -4,4 +4,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="btn_login">Log in</string>
+    <string name="nombre">Name:</string>
+    <string name="capital">Capital:</string>
+    <string name="region">Region:</string>
 </resources>

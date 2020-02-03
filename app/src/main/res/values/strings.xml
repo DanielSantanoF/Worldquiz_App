@@ -4,4 +4,8 @@
     <string name="title_dashboard">Tablas</string>
     <string name="title_notifications">Notificaciones</string>
     <string name="btn_login">Iniciar Sesión</string>
+    <string name="nombre">Nombre:</string>
+    <string name="capital">Capital:</string>
+    <string name="region">Region:</string>
+
 </resources>

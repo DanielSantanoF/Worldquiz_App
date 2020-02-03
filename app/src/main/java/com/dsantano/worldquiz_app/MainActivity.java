@@ -2,6 +2,8 @@ package com.dsantano.worldquiz_app;
 
 import android.os.Bundle;
 
+import com.dsantano.worldquiz_app.Interfaces.ICountryListener;
+import com.dsantano.worldquiz_app.models.Country;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +12,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ICountryListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,4 +29,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
     }
 
+    @Override
+    public void onCountryClick(Country c) {
+        
+    }
 }

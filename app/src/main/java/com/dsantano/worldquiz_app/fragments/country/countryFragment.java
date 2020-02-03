@@ -8,16 +8,26 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.dsantano.worldquiz_app.Interfaces.ICountryListener;
 import com.dsantano.worldquiz_app.R;
 import com.dsantano.worldquiz_app.fragments.country.dummy.DummyContent;
 import com.dsantano.worldquiz_app.fragments.country.dummy.DummyContent.DummyItem;
+import com.dsantano.worldquiz_app.models.Country;
+import com.dsantano.worldquiz_app.retrofit.generator.CountryGenerator;
+import com.dsantano.worldquiz_app.retrofit.services.CountryService;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class countryFragment extends Fragment {
 
@@ -25,44 +35,62 @@ public class countryFragment extends Fragment {
     private int mColumnCount = 1;
     private ICountryListener mListener;
     private MycountryRecyclerViewAdapter adapter;
+    private CountryService countryService;
+    private View view;
+    private List<Country> lista;
+    private CountryService service;
+    private Context context;
+    private  RecyclerView recyclerView;
+    private List<Country> pasar;
+    private int desde = 0, hasta = 0;
 
 
     public countryFragment() {
     }
 
-    public static countryFragment newInstance(int columnCount) {
-        countryFragment fragment = new countryFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_country_list, container, false);
+        view = inflater.inflate(R.layout.fragment_country_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+            context = view.getContext();
+            recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MycountryRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+
         }
+
+        service = CountryGenerator.createService(CountryService.class);
+
+        Call<List<Country>> call = service.allCountry();
+
+        call.enqueue(new Callback<List<Country>>() {
+            @Override
+            public void onResponse(Call<List<Country>> call, Response<List<Country>> response) {
+                if (response.isSuccessful()) {
+                    lista = response.body();
+                    cargarDatos();
+                } else {
+                    Toast.makeText(context, "Error al realizar la petición", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Country>> call, Throwable t) {
+                Log.e("Network Failure", t.getMessage());
+                Toast.makeText(context, "Error al realizar la petición", Toast.LENGTH_SHORT).show();
+            }
+        });
         return view;
     }
 
@@ -82,6 +110,22 @@ public class countryFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void cargarDatos(){
+        pasar= new ArrayList<Country>();
+        hasta = desde+19;
+
+        for (;desde<hasta; desde++){
+            pasar.add(lista.get(desde));
+        }
+
+        adapter = new MycountryRecyclerViewAdapter(
+                context,
+                R.layout.fragment_country,
+                pasar
+        );
+        recyclerView.setAdapter(adapter);
     }
 
 }

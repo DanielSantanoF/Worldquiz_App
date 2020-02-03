@@ -7,5 +7,6 @@
     <string name="nombre">Nombre:</string>
     <string name="capital">Capital:</string>
     <string name="region">Region:</string>
+    <string name="title_activity_detalle">DetalleActivity</string>
 
 </resources>

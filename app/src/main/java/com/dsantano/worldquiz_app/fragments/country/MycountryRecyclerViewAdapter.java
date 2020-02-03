@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.dsantano.worldquiz_app.R;
 import com.dsantano.worldquiz_app.fragments.country.countryFragment.OnListFragmentInteractionListener;
 import com.dsantano.worldquiz_app.fragments.country.dummy.DummyContent.DummyItem;
 

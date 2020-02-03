@@ -25,6 +25,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -115,13 +117,21 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser u) {
+            user = u;
             Intent i = new Intent(LoginActivity.this, MainActivity.class);
-//            i.putExtra("email", user.getEmail());
-//            i.putExtra("photo", user.getPhotoUrl());
-//            i.putExtra("name", user.getDisplayName());
+            i.putExtra("email", user.getEmail());
+            i.putExtra("photo", user.getPhotoUrl());
+            i.putExtra("name", user.getDisplayName());
             startActivity(i);
-//        user = u;
-//        if(user != null){
+        if(user != null){
+            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("users");
+            DatabaseReference currentUserDb = mDatabase.child(mAuth.getCurrentUser().getUid());
+            currentUserDb.child("name").setValue(user.getDisplayName());
+            currentUserDb.child("photo").setValue(user.getPhotoUrl());
+            currentUserDb.child("uid").setValue(user.getUid());
+        } else {
+            Toast.makeText(this, "Login Error", Toast.LENGTH_SHORT).show();
+        }
 //            userfb = new HashMap<>();
 //            userfb.put("name", user.getDisplayName());
 //            userfb.put("photo", user.getPhotoUrl());

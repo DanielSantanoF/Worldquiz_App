@@ -3,6 +3,7 @@ package com.dsantano.worldquiz_app.fragments.country;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.dsantano.worldquiz_app.Interfaces.ICountryListener;
 import com.dsantano.worldquiz_app.R;
 import com.dsantano.worldquiz_app.models.Country;
+import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.List;
 
@@ -44,9 +46,12 @@ public class MycountryRecyclerViewAdapter extends RecyclerView.Adapter<Mycountry
         holder.nombre.setText(holder.mItem.getName());
         holder.region.setText(holder.mItem.getRegion());
 
+        //CircularImageView circularImageView = holder.mView.findViewById(R.id.imageViewBandera);
+        //circularImageView.setBorderWidth(7f);
+        //circularImageView.setBorderColor(Color.BLACK);
+
         Glide.with(ctx)
-                .load(holder.mItem.getFlag())
-                .centerCrop()
+                .load("https://www.countryflags.io/"+holder.mItem.alpha2Code+"/flat/64.png")
                 .into(holder.bandera);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {

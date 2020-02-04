@@ -41,8 +41,6 @@ public class countryFragment extends Fragment {
     private CountryService service;
     private Context context;
     private  RecyclerView recyclerView;
-    private List<Country> pasar;
-    private int desde = 0, hasta = 0;
 
 
     public countryFragment() {
@@ -113,17 +111,11 @@ public class countryFragment extends Fragment {
     }
 
     public void cargarDatos(){
-        pasar= new ArrayList<Country>();
-        hasta = desde+19;
-
-        for (;desde<hasta; desde++){
-            pasar.add(lista.get(desde));
-        }
 
         adapter = new MycountryRecyclerViewAdapter(
                 context,
                 R.layout.fragment_country,
-                pasar
+                lista
         );
         recyclerView.setAdapter(adapter);
     }

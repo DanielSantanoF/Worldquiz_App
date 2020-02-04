@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:icon="@android:drawable/checkbox_on_background"
-        android:title="Usuario" />
+        android:id="@+id/menuItemMyUser"
+        android:icon="@drawable/ic_account_circle_white_24dp"
+        android:title="@string/menu_tittle_user"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menuItemLogOut"
+        android:title="@string/menu_tittle_log_out" />
 </menu>

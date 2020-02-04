@@ -8,5 +8,9 @@
     <string name="capital">Capital:</string>
     <string name="region">Region:</string>
     <string name="title_activity_detalle">DetalleActivity</string>
-
+    <string name="menu_tittle_user">Mi usuario</string>
+    <string name="content_description_image_view">Imagen cargada por la app</string>
+    <string name="text_username_tittle">Usuario:</string>
+    <string name="text_email_tittle">Email:</string>
+    <string name="menu_tittle_log_out">Cerrar Sesión</string>
 </resources>

@@ -6,7 +6,10 @@
     <string name="btn_login">Iniciar Sesión</string>
     <string name="nombre">Nombre:</string>
     <string name="capital">Capital:</string>
-    <string name="region">Region:</string>
+    <string name="region">Región:</string>
+    <string name="population">Población:</string>
+    <string name="area">Extensión:</string>
+    <string name="location">Localización:</string>
     <string name="title_activity_detalle">DetalleActivity</string>
 
 </resources>

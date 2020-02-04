@@ -1,5 +1,7 @@
 package com.dsantano.worldquiz_app;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.dsantano.worldquiz_app.Interfaces.ICountryListener;
@@ -31,6 +33,9 @@ public class MainActivity extends AppCompatActivity implements ICountryListener 
 
     @Override
     public void onCountryClick(Country c) {
-        
+        Intent i = new Intent(this,
+                DetailActivity.class);
+        i.putExtra("alpha", c.getAlpha2Code());
+        startActivity(i);
     }
 }

@@ -35,6 +35,7 @@ public class rankingFragment extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private Context mContext;
     private RecyclerView recyclerView;
+    private View view;
 
 
     public rankingFragment() {
@@ -50,7 +51,7 @@ public class rankingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_ranking_list, container, false);
+        view = inflater.inflate(R.layout.fragment_ranking_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -70,15 +71,20 @@ public class rankingFragment extends Fragment {
                     } else {
                         Log.w(TAG, "Error getting documents.", task.getException());
                     }
+                    recyclerView = view.findViewById(R.id.listRanking);
+
+                    myrankingRecyclerViewAdapter = new MyrankingRecyclerViewAdapter(
+                            mContext,
+                            R.layout.fragment_ranking,
+                            usersList);
+
+                    recyclerView.setAdapter(myrankingRecyclerViewAdapter);
+
+
                 }
             });
 
-            myrankingRecyclerViewAdapter = new MyrankingRecyclerViewAdapter(
-                    mContext,
-                    R.layout.fragment_country,
-                    usersList);
 
-            recyclerView.setAdapter(myrankingRecyclerViewAdapter);
 
         }
         return view;

@@ -3,18 +3,18 @@ package com.dsantano.worldquiz_app.fragments.country;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 import com.bumptech.glide.Glide;
 import com.dsantano.worldquiz_app.Interfaces.ICountryListener;
 import com.dsantano.worldquiz_app.R;
 import com.dsantano.worldquiz_app.models.Country;
-import com.mikhaellopez.circularimageview.CircularImageView;
+
 
 import java.util.List;
 

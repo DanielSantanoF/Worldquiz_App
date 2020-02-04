@@ -22,9 +22,9 @@ public class UserLoggedDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_logged_detail);
 
-        email = Objects.requireNonNull(getIntent().getExtras().get("email")).toString();
-        photo = Objects.requireNonNull(getIntent().getExtras().get("photo")).toString();
-        name = Objects.requireNonNull(getIntent().getExtras().get("name")).toString();
+        email = getIntent().getExtras().get("email").toString();
+        photo = getIntent().getExtras().get("photo").toString();
+        name = getIntent().getExtras().get("name").toString();
 
         ivUser = findViewById(R.id.imageViewUserDetail);
         txtUsername = findViewById(R.id.textViewUsernameUserDetails);

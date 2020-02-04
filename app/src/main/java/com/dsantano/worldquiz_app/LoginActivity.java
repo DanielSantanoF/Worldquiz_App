@@ -9,8 +9,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -45,13 +49,22 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseUser user;
     Map<String, Object> userfb;
+    ImageView ivLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        ivLogo = findViewById(R.id.imageViewLogoLogin);
         btnLogin = findViewById(R.id.buttonLogin);
+
+        Glide.with(this)
+                .load("https://png.pngtree.com/templates/md/20180526/md_5b09436f38c00.png")
+                .transform(new CircleCrop())
+                .error(Glide.with(this).load(R.drawable.image_not_loaded_icon))
+                .thumbnail(Glide.with(this).load(R.drawable.loading_gif).transform( new CenterCrop()))
+                .into(ivLogo);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -139,16 +152,16 @@ public class LoginActivity extends AppCompatActivity {
                                     .document(user.getUid())
                                     .set(userfb);
                         }
+                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                        i.putExtra("email", user.getEmail());
+                        i.putExtra("photo", user.getPhotoUrl().toString());
+                        i.putExtra("name", user.getDisplayName());
+                        startActivity(i);
                     } else {
                         Log.d("FB", "Failed with: ", task.getException());
                     }
                 }
             });
-            Intent i = new Intent(LoginActivity.this, MainActivity.class);
-            i.putExtra("email", user.getEmail());
-            i.putExtra("photo", user.getPhotoUrl().toString());
-            i.putExtra("name", user.getDisplayName());
-            startActivity(i);
         } else {
             Toast.makeText(this, "Login Error", Toast.LENGTH_SHORT).show();
         }

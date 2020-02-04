@@ -43,9 +43,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        email = Objects.requireNonNull(getIntent().getExtras().get("email")).toString();
-        photo = Objects.requireNonNull(getIntent().getExtras().get("photo")).toString();
-        name = Objects.requireNonNull(getIntent().getExtras().get("name")).toString();
+        email = getIntent().getExtras().get("email").toString();
+        photo = getIntent().getExtras().get("photo").toString();
+        name = getIntent().getExtras().get("name").toString();
 
     }
 

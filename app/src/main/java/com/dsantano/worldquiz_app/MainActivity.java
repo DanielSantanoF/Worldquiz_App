@@ -4,8 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +26,8 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
 
     String email, photo, name;
+    FirebaseAuth mAuth;
+    GoogleSignInClient mGoogleLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +65,32 @@ public class MainActivity extends AppCompatActivity {
                 i.putExtra("photo",photo);
                 startActivity(i);
                 return true;
+            case R.id.menuItemLogOut:
+                logOut();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void logOut(){
+        mAuth = FirebaseAuth.getInstance();
+
+        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions
+                .Builder()
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        mGoogleLogin = GoogleSignIn.getClient(this, googleSignInOptions);
+        FirebaseAuth.getInstance().signOut();
+        mGoogleLogin.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
     }
 }

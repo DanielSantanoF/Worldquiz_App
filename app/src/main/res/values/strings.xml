@@ -8,4 +8,5 @@
     <string name="content_description_image_view">Imagen cargada por la app</string>
     <string name="text_username_tittle">Usuario:</string>
     <string name="text_email_tittle">Email:</string>
+    <string name="menu_tittle_log_out">Cerrar Sesión</string>
 </resources>

@@ -43,7 +43,6 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     GoogleSignInClient mGoogleLogin;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    User userdb;
     FirebaseUser user;
     Map<String, Object> userfb;
 
@@ -117,42 +116,42 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser u) {
-            user = u;
+        user = u;
+        if(user != null) {
+            userfb = new HashMap<>();
+            userfb.put("name", user.getDisplayName());
+            userfb.put("photo", user.getPhotoUrl().toString());
+            userfb.put("uid", user.getUid());
+            DocumentReference docIdRef = db.collection("users").document(user.getUid());
+            docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            Log.d("FB", "Document exists!");
+                            db.collection("users")
+                                    .document(user.getUid())
+                                    .update(userfb);
+                        } else {
+                            Log.d("FB", "Document does not exist!");
+                            db.collection("users")
+                                    .document(user.getUid())
+                                    .set(userfb);
+                        }
+                    } else {
+                        Log.d("FB", "Failed with: ", task.getException());
+                    }
+                }
+            });
             Intent i = new Intent(LoginActivity.this, MainActivity.class);
             i.putExtra("email", user.getEmail());
-            i.putExtra("photo", user.getPhotoUrl());
+            i.putExtra("photo", user.getPhotoUrl().toString());
             i.putExtra("name", user.getDisplayName());
             startActivity(i);
-//        if(user != null){
-//            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("users");
-//            DatabaseReference currentUserDb = mDatabase.child(mAuth.getCurrentUser().getUid());
-//            currentUserDb.child("name").setValue(user.getDisplayName());
-//            currentUserDb.child("photo").setValue(user.getPhotoUrl());
-//            currentUserDb.child("uid").setValue(user.getUid());
-//        } else {
-//            Toast.makeText(this, "Login Error", Toast.LENGTH_SHORT).show();
-//        }
-//            userfb = new HashMap<>();
-//            userfb.put("name", user.getDisplayName());
-//            userfb.put("photo", user.getPhotoUrl());
-//            userfb.put("uid", user.getUid());
-//            db.collection("users").document(user.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                @Override
-//                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                    if (task.isSuccessful()) {
-//                        userdb = task.getResult().toObject(User.class);
-//                            db.collection("users").document(user.getUid())
-//                                    .update(userfb);
-//                    } else {
-//                        db.collection("users").document(user.getUid())
-//                                .set(userfb);
-//                        Toast.makeText(LoginActivity.this, "Login Error Firebase", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            });
-//        } else {
-//            Toast.makeText(this, "Login Error", Toast.LENGTH_SHORT).show();
-//        }
+        } else {
+            Toast.makeText(this, "Login Error", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void logOut(){

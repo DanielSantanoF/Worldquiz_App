@@ -74,9 +74,6 @@ public class MyrankingRecyclerViewAdapter extends RecyclerView.Adapter<Myranking
                 holder.tvPosition.setTextColor(ctx.getColor(R.color.bronze));
 
         }
-        if(position == 0) {
-
-        }
 
     }
 

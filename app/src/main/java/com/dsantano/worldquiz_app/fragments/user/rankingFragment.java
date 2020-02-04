@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.dsantano.worldquiz_app.R;
+import com.dsantano.worldquiz_app.ScoreComparator;
 import com.dsantano.worldquiz_app.fragments.user.dummy.DummyContent;
 import com.dsantano.worldquiz_app.models.Users;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,6 +23,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
@@ -52,6 +56,7 @@ public class rankingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_ranking_list, container, false);
+        usersList = new ArrayList<Users>();
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -71,6 +76,9 @@ public class rankingFragment extends Fragment {
                     } else {
                         Log.w(TAG, "Error getting documents.", task.getException());
                     }
+
+                    Collections.sort(usersList, new ScoreComparator());
+
                     recyclerView = view.findViewById(R.id.listRanking);
 
                     myrankingRecyclerViewAdapter = new MyrankingRecyclerViewAdapter(
@@ -83,8 +91,6 @@ public class rankingFragment extends Fragment {
 
                 }
             });
-
-
 
         }
         return view;

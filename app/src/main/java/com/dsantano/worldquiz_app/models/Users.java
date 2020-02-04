@@ -13,4 +13,8 @@ public class Users {
     private String photo;
     private int score;
     private String uid;
+
+    public double getEffectiveness() {
+        return score / gamesPlayed;
+    }
 }

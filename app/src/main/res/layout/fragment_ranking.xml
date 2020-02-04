@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="130dp" />
+        app:layout_constraintGuide_begin="94dp" />
 
     <ImageView
         android:id="@+id/imageViewPhoto"
@@ -31,6 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
+        android:layout_marginBottom="16dp"
         android:gravity="center"
         android:text="TextView"
         android:textAlignment="center"
@@ -52,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="65dp" />
+        app:layout_constraintGuide_begin="49dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
@@ -65,7 +66,7 @@
         android:id="@+id/textViewScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="14dp"
         android:text="TextView"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
@@ -92,6 +93,7 @@
         android:background="@android:color/background_light"
         app:layout_constraintBottom_toTopOf="@+id/textViewGames"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toBottomOf="@+id/textViewScore" />
 
@@ -108,14 +110,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="16dp" />
+        app:layout_constraintGuide_begin="0dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="114dp" />
+        app:layout_constraintGuide_begin="78dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"

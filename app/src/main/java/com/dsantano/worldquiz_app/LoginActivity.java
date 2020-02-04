@@ -123,15 +123,15 @@ public class LoginActivity extends AppCompatActivity {
             i.putExtra("photo", user.getPhotoUrl());
             i.putExtra("name", user.getDisplayName());
             startActivity(i);
-        if(user != null){
-            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("users");
-            DatabaseReference currentUserDb = mDatabase.child(mAuth.getCurrentUser().getUid());
-            currentUserDb.child("name").setValue(user.getDisplayName());
-            currentUserDb.child("photo").setValue(user.getPhotoUrl());
-            currentUserDb.child("uid").setValue(user.getUid());
-        } else {
-            Toast.makeText(this, "Login Error", Toast.LENGTH_SHORT).show();
-        }
+//        if(user != null){
+//            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("users");
+//            DatabaseReference currentUserDb = mDatabase.child(mAuth.getCurrentUser().getUid());
+//            currentUserDb.child("name").setValue(user.getDisplayName());
+//            currentUserDb.child("photo").setValue(user.getPhotoUrl());
+//            currentUserDb.child("uid").setValue(user.getUid());
+//        } else {
+//            Toast.makeText(this, "Login Error", Toast.LENGTH_SHORT).show();
+//        }
 //            userfb = new HashMap<>();
 //            userfb.put("name", user.getDisplayName());
 //            userfb.put("photo", user.getPhotoUrl());

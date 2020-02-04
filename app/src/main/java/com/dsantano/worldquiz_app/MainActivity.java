@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements ICountryListener 
 
         email = getIntent().getExtras().get("email").toString();
         photo = getIntent().getExtras().get("photo").toString();
-        name = getIntent().getExtras().get("name").toString();
+        //name = getIntent().getExtras().get("name").toString();
 
     }
 

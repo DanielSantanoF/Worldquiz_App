@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     private final int GOOGLE_LOGIN = 123;
     FirebaseAuth mAuth;
     Button btnLogin;
+    ProgressBar progressBar;
     GoogleSignInClient mGoogleLogin;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseUser user;
@@ -69,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                 .into(ivLogo);
 
         mAuth = FirebaseAuth.getInstance();
+        checkIsLogged();
 
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions
                 .Builder()
@@ -131,6 +133,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser u) {
+        checkIsLogged();
         user = u;
         if(user != null) {
             defaultPhoto = "https://covitalidad.edu.umh.es/wp-content/uploads/sites/1352/2018/06/default-user.png";
@@ -175,6 +178,7 @@ public class LoginActivity extends AppCompatActivity {
                         i.putExtra("photo", photo);
                         i.putExtra("name", name);
                         startActivity(i);
+                        finish();
                     } else {
                         Log.d("FB", "Failed with: ", task.getException());
                     }
@@ -194,4 +198,17 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void checkIsLogged(){
+        btnLogin = findViewById(R.id.buttonLogin);
+        progressBar = findViewById(R.id.progressBarLogin);
+        if(FirebaseAuth.getInstance().getUid() != null){
+            btnLogin.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
+        } else {
+            btnLogin.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
+        }
+    }
+
 }

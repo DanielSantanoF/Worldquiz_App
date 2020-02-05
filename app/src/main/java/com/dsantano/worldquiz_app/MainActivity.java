@@ -1,6 +1,7 @@
 package com.dsantano.worldquiz_app;
 
 import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements ICountryListener 
 
         email = getIntent().getExtras().get("email").toString();
         photo = getIntent().getExtras().get("photo").toString();
-        //name = getIntent().getExtras().get("name").toString();
+        name = getIntent().getExtras().get("name").toString();
 
     }
 
@@ -55,10 +56,7 @@ public class MainActivity extends AppCompatActivity implements ICountryListener 
         return true;
     }
 
-    @Override
-    public void onCountryClick(Country c) {
 
-    }
 
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
@@ -96,5 +94,18 @@ public class MainActivity extends AppCompatActivity implements ICountryListener 
                 finish();
             }
         });
+
     }
+
+    @Override
+    public void onCountryClick(Country c) {
+        Intent i = new Intent(this,
+                DetailActivity.class);
+        i.putExtra("alpha", c.getAlpha2Code());
+        startActivity(i);
+
+    }
+
+
+
 }

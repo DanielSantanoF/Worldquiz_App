@@ -12,5 +12,7 @@
     <string name="content_description_image_view">Image loaded by the app</string>
     <string name="text_username_tittle">User:</string>
     <string name="text_email_tittle">Email:</string>
-    <string name="menu_tittle_log_out">Log out</string>
+    <string name="population">Population:</string>
+    <string name="area">Area:</string>
+    <string name="location">Location:</string>
 </resources>

@@ -133,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
         if(user != null) {
             userfb = new HashMap<>();
             userfb.put("name", user.getDisplayName());
-            userfb.put("photo", user.getPhotoUrl().toString());
+            //userfb.put("photo", user.getPhotoUrl().toString());
             userfb.put("uid", user.getUid());
             DocumentReference docIdRef = db.collection("users").document(user.getUid());
             docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {

@@ -59,6 +59,11 @@ public class MycountryRecyclerViewAdapter extends RecyclerView.Adapter<Mycountry
                 .centerCrop()
                 .into(circularImageView);
 
+        Glide.with(ctx)
+                .load(R.drawable.ic_chevron_right_grey_24dp)
+                .centerCrop()
+                .into(holder.flecha);
+
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +85,7 @@ public class MycountryRecyclerViewAdapter extends RecyclerView.Adapter<Mycountry
         public final TextView capital;
         public final TextView region;
         public final ImageView bandera;
+        public final ImageView flecha;
         public Country mItem;
 
         public ViewHolder(View view) {
@@ -89,6 +95,7 @@ public class MycountryRecyclerViewAdapter extends RecyclerView.Adapter<Mycountry
             capital= view.findViewById(R.id.textViewCapitalEdit);
             region = view.findViewById(R.id.textViewRegionEdit);
             bandera = view.findViewById(R.id.imageViewBandera);
+            flecha = view.findViewById(R.id.imageViewFlecha);
         }
 
     }

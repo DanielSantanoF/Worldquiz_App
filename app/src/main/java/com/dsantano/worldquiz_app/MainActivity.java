@@ -69,17 +69,14 @@ public class MainActivity extends AppCompatActivity implements ICountryListener 
             case R.id.menuItemLogOut:
                 logOut();
                 return true;
+            case R.id.menuItemTryQuiz:
+                Intent in = new Intent(MainActivity.this, QuizActivity.class);
+                in.putExtra("uid", FirebaseAuth.getInstance().getUid());
+                startActivity(in);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void goToProfile() {
-        Intent i = new Intent(MainActivity.this, UserLoggedDetailActivity.class);
-        i.putExtra("email",email);
-        i.putExtra("name",name);
-        i.putExtra("photo",photo);
-        startActivity(i);
     }
 
     public void logOut() {

@@ -9,4 +9,5 @@
     <color name="goldBackground">#D9BA64</color>
     <color name="silverBackground">#ADADAA</color>
     <color name="bronzeBackground">#A67646</color>
+    <color name="dark_white">#E9DFDF</color>
 </resources>

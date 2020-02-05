@@ -72,8 +72,10 @@ public class MyrankingRecyclerViewAdapter extends RecyclerView.Adapter<Myranking
                 holder.tvPosition.setVisibility(View.VISIBLE);
                 holder.tvPosition.setText("3º");
                 holder.tvPosition.setTextColor(ctx.getColor(R.color.bronze));
+                break;
 
         }
+
 
     }
 

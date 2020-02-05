@@ -6,8 +6,7 @@
     android:name="com.dsantano.worldquiz_app.fragments.user.rankingFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
+    android:padding="8dp"
     app:layoutManager="LinearLayoutManager"
     tools:context=".fragments.user.rankingFragment"
     tools:listitem="@layout/fragment_ranking" />

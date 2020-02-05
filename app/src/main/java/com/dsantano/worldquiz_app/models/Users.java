@@ -15,6 +15,11 @@ public class Users {
     private String uid;
 
     public double getEffectiveness() {
-        return score / gamesPlayed;
+
+        if(gamesPlayed == 0) {
+            return 0;
+        } else {
+            return getScore() / getGamesPlayed();
+        }
     }
 }

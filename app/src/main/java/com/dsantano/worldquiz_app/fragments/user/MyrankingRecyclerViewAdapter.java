@@ -1,11 +1,8 @@
 package com.dsantano.worldquiz_app.fragments.user;
 
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,21 +54,30 @@ public class MyrankingRecyclerViewAdapter extends RecyclerView.Adapter<Myranking
 
         switch (position) {
             case 0:
-                holder.mView.setBackgroundColor(ctx.getColor(R.color.goldBackground));
+                holder.mView.setBackgroundColor(ctx.getResources().getColor(R.color.goldBackground));
                 holder.tvPosition.setVisibility(View.VISIBLE);
+                holder.tvName.setTextColor(ctx.getResources().getColor(R.color.gold));
+                holder.tvScore.setTextColor(ctx.getResources().getColor(R.color.gold));
+                holder.tvGame.setTextColor(ctx.getResources().getColor(R.color.gold));
                 holder.tvPosition.setText("1º");
                 break;
             case 1:
-                holder.mView.setBackgroundColor(ctx.getColor(R.color.silverBackground));
+                holder.mView.setBackgroundColor(ctx.getResources().getColor(R.color.silverBackground));
                 holder.tvPosition.setVisibility(View.VISIBLE);
+                holder.tvName.setTextColor(ctx.getResources().getColor(R.color.silver));
+                holder.tvScore.setTextColor(ctx.getResources().getColor(R.color.silver));
+                holder.tvGame.setTextColor(ctx.getResources().getColor(R.color.silver));
                 holder.tvPosition.setText("2º");
-                holder.tvPosition.setTextColor(ctx.getColor(R.color.silver));
+                holder.tvPosition.setTextColor(ctx.getResources().getColor(R.color.silver));
                 break;
             case 2:
-                holder.mView.setBackgroundColor(ctx.getColor(R.color.bronzeBackground));
+                holder.mView.setBackgroundColor(ctx.getResources().getColor(R.color.bronzeBackground));
                 holder.tvPosition.setVisibility(View.VISIBLE);
+                holder.tvName.setTextColor(ctx.getResources().getColor(R.color.bronze));
+                holder.tvScore.setTextColor(ctx.getResources().getColor(R.color.bronze));
+                holder.tvGame.setTextColor(ctx.getResources().getColor(R.color.bronze));
                 holder.tvPosition.setText("3º");
-                holder.tvPosition.setTextColor(ctx.getColor(R.color.bronze));
+                holder.tvPosition.setTextColor(ctx.getResources().getColor(R.color.bronze));
                 break;
 
         }

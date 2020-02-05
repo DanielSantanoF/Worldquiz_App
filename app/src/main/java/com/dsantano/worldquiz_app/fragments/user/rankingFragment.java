@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,9 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.dsantano.worldquiz_app.EfectivityComparator;
 import com.dsantano.worldquiz_app.R;
 import com.dsantano.worldquiz_app.ScoreComparator;
 import com.dsantano.worldquiz_app.fragments.user.dummy.DummyContent;
@@ -40,6 +45,7 @@ public class rankingFragment extends Fragment {
     private Context mContext;
     private RecyclerView recyclerView;
     private View view;
+    private boolean order;
 
 
     public rankingFragment() {
@@ -94,6 +100,50 @@ public class rankingFragment extends Fragment {
 
         }
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.ranking_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.action_filter_ranking:
+                if(order) {
+                    item.setIcon(R.drawable.ic_repeat_one_white_24dp);
+                    Collections.sort(usersList, new ScoreComparator());
+
+                    recyclerView.setAdapter(myrankingRecyclerViewAdapter);
+                } else {
+                    item.setIcon(R.drawable.ic_repeat_white_24dp);
+                    Collections.sort(usersList, new EfectivityComparator());
+
+                    recyclerView.setAdapter(myrankingRecyclerViewAdapter);
+                }
+                order = !order;
+                //TODO ordererRanking();
+                break;
+//            case R.id.action_order_ranking:
+//                if(ordenAsc) {
+//                    item.setIcon(R.drawable.ic_dashboard_black_24dp);
+//                } else {
+//                    item.setIcon(R.drawable.ic_home_black_24dp);
+//                }
+//                ordenAsc = !ordenAsc;
+//                //TODO orederRanking();
+//                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 

@@ -1,31 +1,32 @@
 package com.dsantano.worldquiz_app.fragments.country;
 
 import androidx.recyclerview.widget.RecyclerView;
-
+import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.dsantano.worldquiz_app.R;
-import com.dsantano.worldquiz_app.fragments.country.countryFragment.OnListFragmentInteractionListener;
-import com.dsantano.worldquiz_app.fragments.country.dummy.DummyContent.DummyItem;
-
+import com.bumptech.glide.Glide;
+import com.dsantano.worldquiz_app.Interfaces.ICountryListener;
+import com.dsantano.worldquiz_app.models.Country;
+import com.mikhaellopez.circularimageview.CircularImageView;
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class MycountryRecyclerViewAdapter extends RecyclerView.Adapter<MycountryRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
-    private final OnListFragmentInteractionListener mListener;
+    private final List<Country> mValues;
+    private int layout;
+    private Context ctx;
 
-    public MycountryRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
-        mValues = items;
-        mListener = listener;
+
+    public MycountryRecyclerViewAdapter(Context ctx, int layout, List<Country> items) {
+        this.mValues = items;
+        this.ctx = ctx;
+        this.layout = layout;
+
     }
 
     @Override
@@ -38,19 +39,33 @@ public class MycountryRecyclerViewAdapter extends RecyclerView.Adapter<Mycountry
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.capital.setText(holder.mItem.getCapital());
+        holder.nombre.setText(holder.mItem.getName());
+        holder.region.setText(holder.mItem.getRegion());
+
+        CircularImageView circularImageView = holder.mView.findViewById(R.id.imageViewBandera);
+        circularImageView.setCircleColor(Color.LTGRAY);
+        circularImageView.setBorderWidth(2f);
+        circularImageView.setBorderColor(Color.GRAY);
+
+        Glide.with(ctx)
+                .load("https://www.countryflags.io/"+holder.mItem.alpha2Code+"/flat/64.png")
+                .centerCrop()
+                .into(circularImageView);
+
+        Glide.with(ctx)
+                .load(R.drawable.ic_chevron_right_grey_24dp)
+                .centerCrop()
+                .into(holder.flecha);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
-                }
+                ICountryListener act = (ICountryListener) ctx;
+                act.onCountryClick(holder.mItem);
             }
         });
+
     }
 
     @Override
@@ -60,20 +75,22 @@ public class MycountryRecyclerViewAdapter extends RecyclerView.Adapter<Mycountry
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public DummyItem mItem;
+        public final TextView nombre;
+        public final TextView capital;
+        public final TextView region;
+        public final ImageView bandera;
+        public final ImageView flecha;
+        public Country mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            nombre = view.findViewById(R.id.textViewNombreEdit);
+            capital= view.findViewById(R.id.textViewCapitalEdit);
+            region = view.findViewById(R.id.textViewRegionEdit);
+            bandera = view.findViewById(R.id.imageViewBandera);
+            flecha = view.findViewById(R.id.imageViewFlecha);
         }
 
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
-        }
     }
 }

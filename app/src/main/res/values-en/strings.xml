@@ -4,4 +4,16 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">User Ranking</string>
     <string name="btn_login">Log in</string>
+    <string name="nombre">Name:</string>
+    <string name="capital">Capital:</string>
+    <string name="region">Region:</string>
+    <string name="title_activity_detalle">DetailActivity</string>
+    <string name="menu_tittle_user">My user</string>
+    <string name="content_description_image_view">Image loaded by the app</string>
+    <string name="text_username_tittle">User:</string>
+    <string name="text_email_tittle">Email:</string>
+    <string name="population">Population:</string>
+    <string name="area">Area:</string>
+    <string name="location">Location:</string>
+    <string name="menu_tittle_log_out">Log out</string>
 </resources>

@@ -9,8 +9,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -25,9 +30,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SnapshotMetadata;
+import com.google.firebase.firestore.auth.User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,13 +48,25 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     GoogleSignInClient mGoogleLogin;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseUser user;
+    Map<String, Object> userfb;
+    ImageView ivLogo;
+    String nameOfEmail, defaultPhoto, email, photo, name;;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        ivLogo = findViewById(R.id.imageViewLogoLogin);
         btnLogin = findViewById(R.id.buttonLogin);
+
+        Glide.with(this)
+                .load("https://png.pngtree.com/templates/md/20180526/md_5b09436f38c00.png")
+                .transform(new CircleCrop())
+                .error(Glide.with(this).load(R.drawable.image_not_loaded_icon))
+                .thumbnail(Glide.with(this).load(R.drawable.loading_gif).transform( new CircleCrop()))
+                .into(ivLogo);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -109,34 +130,56 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    private void updateUI(FirebaseUser user) {
-        if(user != null){
-            Intent i = new Intent(LoginActivity.this, MainActivity.class);
-            i.putExtra("email", user.getEmail());
-            i.putExtra("photo", user.getPhotoUrl());
-            i.putExtra("name", user.getDisplayName());
-            startActivity(i);
-            Map<String, Object> userfb = new HashMap<>();
-            userfb.put("name", user.getDisplayName());
-            userfb.put("photo", user.getPhotoUrl());
+    private void updateUI(FirebaseUser u) {
+        user = u;
+        if(user != null) {
+            defaultPhoto = "https://covitalidad.edu.umh.es/wp-content/uploads/sites/1352/2018/06/default-user.png";
+            userfb = new HashMap<>();
             userfb.put("uid", user.getUid());
-//            db.collection("users").document(user.getUid())
-//                    .update(userfb)
-//                    .add(userfb)
-//                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                        @Override
-//                        public void onSuccess(DocumentReference documentReference) {
-//                        }
-//                    })
-//                    .addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception e) {
-//                        }
-//                    });
-            Task<DocumentSnapshot> userdb = db.collection("users").document(user.getUid()).get();
-            if(userdb != null){
-
+            userfb.put("email", user.getEmail());
+            if(user.getDisplayName() == null || user.getDisplayName().equals("")){
+                nameOfEmail = user.getEmail().toString().split("@")[0];
+                name = nameOfEmail;
+                userfb.put("name", nameOfEmail);
+            } else {
+                name = user.getDisplayName();
+                userfb.put("name", user.getDisplayName());
             }
+            if(user.getPhotoUrl() == null){
+                photo = defaultPhoto;
+                userfb.put("photo", defaultPhoto);
+            } else {
+                photo = user.getPhotoUrl().toString();
+                userfb.put("photo", user.getPhotoUrl().toString());
+            }
+            email = user.getEmail();
+            DocumentReference docIdRef = db.collection("users").document(user.getUid());
+            docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            Log.d("FB", "Document exists!");
+                            db.collection("users")
+                                    .document(user.getUid())
+                                    .update(userfb);
+                        } else {
+                            Log.d("FB", "Document does not exist!");
+                            db.collection("users")
+                                    .document(user.getUid())
+                                    .set(userfb);
+                        }
+                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                        i.putExtra("email", email);
+                        i.putExtra("photo", photo);
+                        i.putExtra("name", name);
+                        startActivity(i);
+                    } else {
+                        Log.d("FB", "Failed with: ", task.getException());
+                    }
+                }
+            });
         } else {
             Toast.makeText(this, "Login Error", Toast.LENGTH_SHORT).show();
         }

@@ -1,17 +1,34 @@
 package com.dsantano.worldquiz_app;
 
 import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import com.dsantano.worldquiz_app.Interfaces.ICountryListener;
+import com.dsantano.worldquiz_app.models.Country;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity implements ICountryListener {
+
+    String email, photo, name;
+    FirebaseAuth mAuth;
+    GoogleSignInClient mGoogleLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,5 +43,74 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+        email = getIntent().getExtras().get("email").toString();
+        photo = getIntent().getExtras().get("photo").toString();
+        name = getIntent().getExtras().get("name").toString();
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.application_menu, menu);
+        return true;
+    }
+
+
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menuItemMyUser:
+                Intent i = new Intent(MainActivity.this, UserLoggedDetailActivity.class);
+                i.putExtra("email",email);
+                i.putExtra("name",name);
+                i.putExtra("photo",photo);
+                startActivity(i);
+                return true;
+            case R.id.menuItemLogOut:
+                logOut();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void goToProfile() {
+        Intent i = new Intent(MainActivity.this, UserLoggedDetailActivity.class);
+        i.putExtra("email",email);
+        i.putExtra("name",name);
+        i.putExtra("photo",photo);
+        startActivity(i);
+    }
+
+    public void logOut() {
+        mAuth = FirebaseAuth.getInstance();
+
+        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions
+                .Builder()
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        mGoogleLogin = GoogleSignIn.getClient(this, googleSignInOptions);
+        FirebaseAuth.getInstance().signOut();
+        mGoogleLogin.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+    }
+
+    @Override
+    public void onCountryClick(Country c) {
+        Intent i = new Intent(this,
+                DetailActivity.class);
+        i.putExtra("alpha", c.getAlpha2Code());
+        startActivity(i);
+
     }
 }

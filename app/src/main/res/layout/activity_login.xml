@@ -25,8 +25,10 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="90dp"
+        android:contentDescription="@string/content_description_image_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_launcher" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

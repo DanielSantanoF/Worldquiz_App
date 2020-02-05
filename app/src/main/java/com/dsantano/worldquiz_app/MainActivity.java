@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements ICountryListener 
 
         email = getIntent().getExtras().get("email").toString();
         photo = getIntent().getExtras().get("photo").toString();
-        //name = getIntent().getExtras().get("name").toString();
+        name = getIntent().getExtras().get("name").toString();
 
     }
 
@@ -63,11 +63,7 @@ public class MainActivity extends AppCompatActivity implements ICountryListener 
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.menuItemMyUser:
-                Intent i = new Intent(MainActivity.this, UserLoggedDetailActivity.class);
-                i.putExtra("email",email);
-                i.putExtra("name",name);
-                i.putExtra("photo",photo);
-                startActivity(i);
+                goToProfile();
                 return true;
             case R.id.menuItemLogOut:
                 logOut();
@@ -75,6 +71,14 @@ public class MainActivity extends AppCompatActivity implements ICountryListener 
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void goToProfile() {
+        Intent i = new Intent(MainActivity.this, UserLoggedDetailActivity.class);
+        i.putExtra("email",email);
+        i.putExtra("name",name);
+        i.putExtra("photo",photo);
+        startActivity(i);
     }
 
     public void logOut() {

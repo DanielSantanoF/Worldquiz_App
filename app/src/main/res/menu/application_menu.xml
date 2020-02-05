@@ -6,7 +6,7 @@
         android:id="@+id/menuItemMyUser"
         android:icon="@drawable/ic_account_circle_white_24dp"
         android:title="@string/menu_tittle_user"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/menuItemLogOut"
         android:title="@string/menu_tittle_log_out" />

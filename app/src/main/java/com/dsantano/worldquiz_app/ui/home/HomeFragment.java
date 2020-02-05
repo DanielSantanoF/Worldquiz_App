@@ -2,6 +2,9 @@ package com.dsantano.worldquiz_app.ui.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -32,4 +35,33 @@ public class HomeFragment extends Fragment {
         });
         return root;
     }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.countrys_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+//            case R.id.action_order_ranking:
+//                if(ordenAsc) {
+//                    item.setIcon(R.drawable.ic_dashboard_black_24dp);
+//                } else {
+//                    item.setIcon(R.drawable.ic_home_black_24dp);
+//                }
+//                ordenAsc = !ordenAsc;
+//                //TODO orederRanking();
+//                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

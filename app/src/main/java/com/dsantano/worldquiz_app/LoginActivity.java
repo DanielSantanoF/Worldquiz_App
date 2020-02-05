@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -50,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseUser user;
     Map<String, Object> userfb;
     ImageView ivLogo;
+    String nameOfEmail, defaultPhoto, email, photo, name;;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                 .load("https://png.pngtree.com/templates/md/20180526/md_5b09436f38c00.png")
                 .transform(new CircleCrop())
                 .error(Glide.with(this).load(R.drawable.image_not_loaded_icon))
-                .thumbnail(Glide.with(this).load(R.drawable.loading_gif).transform( new CenterCrop()))
+                .thumbnail(Glide.with(this).load(R.drawable.loading_gif).transform( new CircleCrop()))
                 .into(ivLogo);
 
         mAuth = FirebaseAuth.getInstance();
@@ -131,10 +133,26 @@ public class LoginActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser u) {
         user = u;
         if(user != null) {
+            defaultPhoto = "https://covitalidad.edu.umh.es/wp-content/uploads/sites/1352/2018/06/default-user.png";
             userfb = new HashMap<>();
-            userfb.put("name", user.getDisplayName());
-            userfb.put("photo", user.getPhotoUrl().toString());
             userfb.put("uid", user.getUid());
+            userfb.put("email", user.getEmail());
+            if(user.getDisplayName() == null || user.getDisplayName().equals("")){
+                nameOfEmail = user.getEmail().toString().split("@")[0];
+                name = nameOfEmail;
+                userfb.put("name", nameOfEmail);
+            } else {
+                name = user.getDisplayName();
+                userfb.put("name", user.getDisplayName());
+            }
+            if(user.getPhotoUrl() == null){
+                photo = defaultPhoto;
+                userfb.put("photo", defaultPhoto);
+            } else {
+                photo = user.getPhotoUrl().toString();
+                userfb.put("photo", user.getPhotoUrl().toString());
+            }
+            email = user.getEmail();
             DocumentReference docIdRef = db.collection("users").document(user.getUid());
             docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
@@ -153,9 +171,9 @@ public class LoginActivity extends AppCompatActivity {
                                     .set(userfb);
                         }
                         Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                        i.putExtra("email", user.getEmail());
-                        i.putExtra("photo", user.getPhotoUrl().toString());
-                        i.putExtra("name", user.getDisplayName());
+                        i.putExtra("email", email);
+                        i.putExtra("photo", photo);
+                        i.putExtra("name", name);
                         startActivity(i);
                     } else {
                         Log.d("FB", "Failed with: ", task.getException());

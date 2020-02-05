@@ -154,7 +154,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         Intent i = new Intent(LoginActivity.this, MainActivity.class);
                         i.putExtra("email", user.getEmail());
-                        i.putExtra("photo", user.getPhotoUrl().toString());
+                        //i.putExtra("photo", user.getPhotoUrl().toString());
                         i.putExtra("name", user.getDisplayName());
                         startActivity(i);
                     } else {

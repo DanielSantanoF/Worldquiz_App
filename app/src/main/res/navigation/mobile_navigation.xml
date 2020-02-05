@@ -21,6 +21,6 @@
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.dsantano.worldquiz_app.fragments.user.rankingFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_ranking"
         tools:layout="@layout/fragment_ranking_list" />
 </navigation>

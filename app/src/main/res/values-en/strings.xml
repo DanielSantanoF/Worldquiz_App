@@ -15,4 +15,5 @@
     <string name="population">Population:</string>
     <string name="area">Area:</string>
     <string name="location">Location:</string>
+    <string name="menu_tittle_log_out">Log out</string>
 </resources>

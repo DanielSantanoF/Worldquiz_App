@@ -61,7 +61,11 @@ public class MainActivity extends AppCompatActivity implements ICountryListener 
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.menuItemMyUser:
-                goToProfile();
+                Intent i = new Intent(MainActivity.this, UserLoggedDetailActivity.class);
+                i.putExtra("email",email);
+                i.putExtra("name",name);
+                i.putExtra("photo",photo);
+                startActivity(i);
                 return true;
             case R.id.menuItemLogOut:
                 logOut();

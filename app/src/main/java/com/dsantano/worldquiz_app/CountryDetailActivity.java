@@ -119,6 +119,9 @@ public class CountryDetailActivity extends AppCompatActivity {
         protected void onPostExecute(UnsplashPhotosResult unsplashPhotosResult) {
             sliderView = findViewById(R.id.imageSlider);
             listCarrousel = new ArrayList<String>();
+            if(unsplashPhotosResult.results.size() < numImgCarrousel){
+                numImgCarrousel = unsplashPhotosResult.results.size();
+            }
             for(int i=0; i<numImgCarrousel; i++) {
                 listCarrousel.add(unsplashPhotosResult.results.get(i).urls.regular);
             }

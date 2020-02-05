@@ -16,4 +16,6 @@
     <string name="area">Area:</string>
     <string name="location">Location:</string>
     <string name="menu_tittle_log_out">Log out</string>
+    <string name="menu_tittle_quiz">Try quiz</string>
+    <string name="btn_finish_quiz">End quiz</string>
 </resources>

@@ -16,4 +16,6 @@
     <string name="text_username_tittle">Usuario:</string>
     <string name="text_email_tittle">Email:</string>
     <string name="menu_tittle_log_out">Cerrar Sesión</string>
+    <string name="menu_tittle_quiz">Hacer quiz</string>
+    <string name="btn_finish_quiz">Terminar quiz</string>
 </resources>

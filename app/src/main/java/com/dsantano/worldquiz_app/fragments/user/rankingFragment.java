@@ -17,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dsantano.worldquiz_app.EfectivityComparator;
@@ -129,7 +130,7 @@ public class rankingFragment extends Fragment {
                             usersList,
                             false);
                     recyclerView.setAdapter(myrankingRecyclerViewAdapter);
-                    Toast.makeText(mContext, getResources().getString(R.string.score), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, getResources().getString(R.string.score), Toast.LENGTH_SHORT);
                 } else {
                     item.setIcon(R.drawable.ic_repeat_white_24dp);
                     Collections.sort(usersList, new EfectivityComparator());

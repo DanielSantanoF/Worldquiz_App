@@ -11,7 +11,12 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTintMode="screen"
+        app:cardBackgroundColor="#E0E0E0"
         app:cardCornerRadius="4dp"
+        app:cardElevation="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,7 +27,7 @@
             android:layout_height="match_parent"
             android:padding="8dp">
 
-            <com.mikhaellopez.circularimageview.CircularImageView
+            <ImageView
                 android:id="@+id/imageViewBandera"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -31,66 +36,17 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/textViewNombre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:text="@string/nombre"
+                android:id="@+id/textViewNombreEdit"
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:textAlignment="center"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="18sp"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageViewFlecha"
                 app:layout_constraintStart_toEndOf="@+id/imageViewBandera"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textViewCapital"
-                android:layout_width="56dp"
-                android:layout_height="17dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/capital"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@+id/imageViewBandera"
-                app:layout_constraintTop_toBottomOf="@+id/textViewNombre" />
-
-            <TextView
-                android:id="@+id/textViewRegion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/region"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                app:layout_constraintStart_toEndOf="@+id/imageViewBandera"
-                app:layout_constraintTop_toBottomOf="@+id/textViewCapital" />
-
-            <TextView
-                android:id="@+id/textViewNombreEdit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/textViewNombre"
-                app:layout_constraintTop_toTopOf="@+id/textViewNombre" />
-
-            <TextView
-                android:id="@+id/textViewCapitalEdit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@+id/textViewCapital"
-                app:layout_constraintTop_toTopOf="@+id/textViewCapital" />
-
-            <TextView
-                android:id="@+id/textViewRegionEdit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                app:layout_constraintStart_toEndOf="@+id/textViewRegion"
-                app:layout_constraintTop_toTopOf="@+id/textViewRegion" />
 
             <ImageView
                 android:id="@+id/imageViewFlecha"

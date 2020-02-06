@@ -76,10 +76,11 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="210dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
+        app:cardBackgroundColor="#E0E0E0"
         app:cardCornerRadius="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -90,124 +91,136 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/CapitalDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/capital"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            <ImageView
+                android:id="@+id/imageViewCapital"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="55dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/CapitalDetailEdit"
                 android:layout_width="0dp"
                 android:layout_height="21dp"
-                android:layout_marginStart="8dp"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                app:layout_constraintStart_toEndOf="@+id/CapitalDetail"
-                app:layout_constraintTop_toTopOf="@+id/CapitalDetail" />
-
-            <TextView
-                android:id="@+id/RegionDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/region"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/CapitalDetail" />
+                app:layout_constraintEnd_toEndOf="@+id/imageViewCapital"
+                app:layout_constraintStart_toStartOf="@+id/imageViewCapital"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewCapital" />
+
+            <ImageView
+                android:id="@+id/imageViewRegion"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/imageViewPopulation"
+                app:layout_constraintStart_toEndOf="@+id/imageViewCapital"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/regionDetailEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                app:layout_constraintStart_toEndOf="@+id/RegionDetail"
-                app:layout_constraintTop_toTopOf="@+id/RegionDetail" />
-
-            <TextView
-                android:id="@+id/populationDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/population"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/RegionDetail" />
+                app:layout_constraintEnd_toEndOf="@+id/imageViewRegion"
+                app:layout_constraintStart_toStartOf="@+id/imageViewRegion"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewRegion" />
+
+            <ImageView
+                android:id="@+id/imageViewPopulation"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="55dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/populationDetailEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                app:layout_constraintStart_toEndOf="@+id/populationDetail"
-                app:layout_constraintTop_toTopOf="@+id/populationDetail" />
-
-            <TextView
-                android:id="@+id/areaDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/area"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                app:layout_constraintEnd_toEndOf="@+id/imageViewPopulation"
+                app:layout_constraintStart_toStartOf="@+id/imageViewPopulation"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewPopulation" />
+
+            <ImageView
+                android:id="@+id/imageViewMoney"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="55dp"
+                android:layout_marginTop="24dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/populationDetail" />
+                app:layout_constraintTop_toBottomOf="@+id/CapitalDetailEdit"
+                tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/areaDetailEdit"
+                android:id="@+id/MoneyDetailEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                app:layout_constraintStart_toEndOf="@+id/areaDetail"
-                app:layout_constraintTop_toTopOf="@+id/areaDetail" />
-
-            <TextView
-                android:id="@+id/locationDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/location"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/areaDetail" />
+                app:layout_constraintEnd_toEndOf="@+id/imageViewMoney"
+                app:layout_constraintStart_toStartOf="@+id/imageViewMoney"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewMoney" />
 
-            <TextView
-                android:id="@+id/locationDetailEdit1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                app:layout_constraintStart_toEndOf="@+id/locationDetail"
-                app:layout_constraintTop_toTopOf="@+id/locationDetail" />
+            <ImageView
+                android:id="@+id/imageViewLanguage"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toStartOf="@+id/imageViewLocation"
+                app:layout_constraintStart_toEndOf="@+id/imageViewMoney"
+                app:layout_constraintTop_toBottomOf="@+id/regionDetailEdit"
+                tools:srcCompat="@tools:sample/avatars" />
 
-            <TextView
-                android:id="@+id/separador"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="-"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                app:layout_constraintStart_toEndOf="@+id/locationDetailEdit1"
-                app:layout_constraintTop_toTopOf="@+id/locationDetailEdit1" />
+            <ImageView
+                android:id="@+id/imageViewLocation"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="55dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/populationDetailEdit"
+                tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/locationDetailEdit2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                app:layout_constraintStart_toEndOf="@+id/separador"
-                app:layout_constraintTop_toTopOf="@+id/separador" />
+                app:layout_constraintEnd_toEndOf="@+id/imageViewLocation"
+                app:layout_constraintStart_toStartOf="@+id/imageViewLocation"
+                app:layout_constraintTop_toBottomOf="@+id/locationDetailEdit1" />
+
+            <TextView
+                android:id="@+id/locationDetailEdit1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                app:layout_constraintEnd_toEndOf="@+id/imageViewLocation"
+                app:layout_constraintStart_toStartOf="@+id/imageViewLocation"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewLocation" />
+
+            <TextView
+                android:id="@+id/textViewLanguaje"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                app:layout_constraintEnd_toEndOf="@+id/imageViewLanguage"
+                app:layout_constraintStart_toStartOf="@+id/imageViewLanguage"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewLanguage" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

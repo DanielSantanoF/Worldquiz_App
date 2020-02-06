@@ -1,5 +1,7 @@
 package com.dsantano.worldquiz_app.fragments.user;
 
+import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
@@ -24,12 +26,14 @@ public class MyrankingRecyclerViewAdapter extends RecyclerView.Adapter<Myranking
     int layoutTemplate;
     List<Users> listData;
     View view;
+    Boolean effectivity;
 
 
-    public MyrankingRecyclerViewAdapter(Context ctx, int layoutTemplate, List<Users> listData) {
+    public MyrankingRecyclerViewAdapter(Context ctx, int layoutTemplate, List<Users> listData, Boolean effectivity) {
         this.ctx = ctx;
         this.layoutTemplate = layoutTemplate;
         this.listData = listData;
+        this.effectivity = effectivity;
     }
 
     @Override
@@ -44,12 +48,33 @@ public class MyrankingRecyclerViewAdapter extends RecyclerView.Adapter<Myranking
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = listData.get(position);
+        holder.tvEffectivity.setVisibility(View.GONE);
+        holder.ivEffectivity.setVisibility(View.GONE);
         holder.tvName.setText(holder.mItem.getName());
         holder.tvGame.setText(String.valueOf(holder.mItem.getGamesPlayed()));
         holder.tvScore.setText(String.valueOf(holder.mItem.getScore()));
         holder.tvPosition.setVisibility(View.GONE);
 
         Glide.with(ctx).load(holder.mItem.getPhoto()).apply(RequestOptions.bitmapTransform(new CircleCrop())).error(Glide.with(ctx).load("https://www.kindpng.com/picc/m/381-3817314_transparent-groups-of-people-png-user-icon-round.png").apply(RequestOptions.bitmapTransform(new CircleCrop()))).into(holder.ivPhoto);
+
+        if(effectivity) {
+            holder.tvEffectivity.setVisibility(View.VISIBLE);
+            holder.ivEffectivity.setVisibility(View.VISIBLE);
+            holder.tvEffectivity.setText(String.valueOf(holder.mItem.getEffectiveness()));
+            holder.tvGame.setVisibility(View.INVISIBLE);
+            holder.tvScore.setVisibility(View.INVISIBLE);
+            holder.ivMedal.setVisibility(View.INVISIBLE);
+            holder.ivGame.setVisibility(View.INVISIBLE);
+            holder.divider.setVisibility(View.GONE);
+        } else {
+            holder.tvEffectivity.setVisibility(View.GONE);
+            holder.ivEffectivity.setVisibility(View.GONE);
+            holder.tvGame.setVisibility(View.VISIBLE);
+            holder.tvScore.setVisibility(View.VISIBLE);
+            holder.ivMedal.setVisibility(View.VISIBLE);
+            holder.ivGame.setVisibility(View.VISIBLE);
+            holder.divider.setVisibility(View.VISIBLE);
+        }
 
 
         switch (position) {
@@ -96,7 +121,13 @@ public class MyrankingRecyclerViewAdapter extends RecyclerView.Adapter<Myranking
         public final TextView tvScore;
         public final TextView tvGame;
         public final TextView tvPosition;
+        public final TextView tvEffectivity;
         public final ImageView ivPhoto;
+        public final ImageView ivMedal;
+        public final ImageView ivGame;
+        public final ImageView ivEffectivity;
+        public final View divider;
+
         public Users mItem;
 
         public ViewHolder(View view) {
@@ -107,6 +138,11 @@ public class MyrankingRecyclerViewAdapter extends RecyclerView.Adapter<Myranking
             tvScore = view.findViewById(R.id.textViewScore);
             tvPosition = view.findViewById(R.id.textViewPosition);
             ivPhoto = view.findViewById(R.id.imageViewPhoto);
+            tvEffectivity = view.findViewById(R.id.textViewEffec);
+            ivMedal = view.findViewById(R.id.imageViewMedal);
+            ivGame = view.findViewById(R.id.imageViewNumGame);
+            ivEffectivity = view.findViewById(R.id.imageViewEffec);
+            divider = view.findViewById(R.id.divider);
         }
 
 

@@ -2,7 +2,7 @@
     <string name="app_name">Worldquiz</string>
     <string name="title_home">Menu</string>
     <string name="title_dashboard">Tablas</string>
-    <string name="title_notifications">Ranking de Usuarios</string>
+    <string name="title_ranking">Ranking de Usuarios</string>
     <string name="btn_login">Iniciar Sesión</string>
     <string name="nombre">Nombre:</string>
     <string name="capital">Capital:</string>

@@ -88,7 +88,8 @@ public class rankingFragment extends Fragment {
                     myrankingRecyclerViewAdapter = new MyrankingRecyclerViewAdapter(
                             mContext,
                             R.layout.fragment_ranking,
-                            usersList);
+                            usersList,
+                            order);
 
                     recyclerView.setAdapter(myrankingRecyclerViewAdapter);
 
@@ -121,10 +122,21 @@ public class rankingFragment extends Fragment {
                     item.setIcon(R.drawable.ic_repeat_one_white_24dp);
                     Collections.sort(usersList, new ScoreComparator());
 
+                    myrankingRecyclerViewAdapter = new MyrankingRecyclerViewAdapter(
+                            mContext,
+                            R.layout.fragment_ranking,
+                            usersList,
+                            false);
                     recyclerView.setAdapter(myrankingRecyclerViewAdapter);
                 } else {
                     item.setIcon(R.drawable.ic_repeat_white_24dp);
                     Collections.sort(usersList, new EfectivityComparator());
+
+                    myrankingRecyclerViewAdapter = new MyrankingRecyclerViewAdapter(
+                            mContext,
+                            R.layout.fragment_ranking,
+                            usersList,
+                            true);
 
                     recyclerView.setAdapter(myrankingRecyclerViewAdapter);
                 }

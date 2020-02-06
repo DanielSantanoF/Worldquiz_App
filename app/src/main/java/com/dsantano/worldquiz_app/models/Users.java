@@ -1,5 +1,9 @@
 package com.dsantano.worldquiz_app.models;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,11 +19,17 @@ public class Users {
     private String uid;
 
     public double getEffectiveness() {
+        double result;
+        BigDecimal bd;
 
         if(gamesPlayed == 0) {
             return 0;
         } else {
-            return getScore() / getGamesPlayed();
+            result = (double) getScore() / (double) getGamesPlayed();
+            bd = new BigDecimal(result).setScale(2, RoundingMode.HALF_UP);
+
+            return bd.doubleValue();
+            
         }
     }
 }

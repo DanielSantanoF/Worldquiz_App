@@ -32,8 +32,8 @@ import retrofit2.Response;
 public class CountryDetailActivity extends AppCompatActivity {
 
     String alpha, nameCountry;
-    TextView nombre, capital, poblacion, lat1 , lat2 , region,extension;
-    ImageView foto, bandera;
+    TextView nombre, capital, poblacion, lat1 , lat2 , region,money,languaje;
+    ImageView foto, bandera, capitaI, moneyI, poblacionI, latI, regionI, languajeI;
     private CountryService service;
     UnspashService unspashService;
     Country c;
@@ -48,15 +48,47 @@ public class CountryDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_country_detail);
 
         alpha = getIntent().getExtras().getString("alpha");
+        capitaI = findViewById(R.id.imageViewCapital);
+        moneyI = findViewById(R.id.imageViewMoney);
+        languajeI = findViewById(R.id.imageViewLanguage);
+        poblacionI = findViewById(R.id.imageViewPopulation);
+        latI = findViewById(R.id.imageViewLocation);
+        regionI = findViewById(R.id.imageViewRegion);
 
         nombre = findViewById(R.id.textViewNameDetail);
+        Glide.with(CountryDetailActivity.this)
+                .load(R.drawable.capital)
+                .centerCrop()
+                .into(capitaI);
         capital = findViewById(R.id.CapitalDetailEdit);
+        Glide.with(CountryDetailActivity.this)
+                .load(R.drawable.population)
+                .centerCrop()
+                .into(poblacionI);
         poblacion = findViewById(R.id.populationDetailEdit);
+        Glide.with(CountryDetailActivity.this)
+                .load(R.drawable.location)
+                .centerCrop()
+                .into(latI);
         lat1 = findViewById(R.id.locationDetailEdit1);
         lat2 = findViewById(R.id.locationDetailEdit2);
+        Glide.with(CountryDetailActivity.this)
+                .load(R.drawable.continent)
+                .centerCrop()
+                .into(regionI);
         region = findViewById(R.id.regionDetailEdit);
         bandera = findViewById(R.id.imageViewBanderaDetail);
-        extension = findViewById(R.id.areaDetailEdit);
+        Glide.with(CountryDetailActivity.this)
+                .load(R.drawable.money)
+                .centerCrop()
+                .into(moneyI);
+        money = findViewById(R.id.MoneyDetailEdit);
+        Glide.with(CountryDetailActivity.this)
+                .load(R.drawable.language)
+                .centerCrop()
+                .into(languajeI);
+        languaje = findViewById(R.id.textViewLanguaje);
+
 
         service = CountryGenerator.createService(CountryService.class);
         unspashService = UnsplashGenerator.createService(UnspashService.class);
@@ -77,7 +109,8 @@ public class CountryDetailActivity extends AppCompatActivity {
                         lat2.setText(response.body().getLatlng().get(1)+"");
                     }
                     region.setText(response.body().getRegion());
-                    extension.setText(response.body().getArea()+"");
+                    money.setText(response.body().getCurrencies().get(0).name+"");
+                    languaje.setText(response.body().getLanguages().get(0).name+"");
 
 
                     Glide.with(CountryDetailActivity.this)

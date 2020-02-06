@@ -39,19 +39,19 @@ public class MycountryRecyclerViewAdapter extends RecyclerView.Adapter<Mycountry
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.capital.setText(holder.mItem.getCapital());
-        holder.nombre.setText(holder.mItem.getName());
-        holder.region.setText(holder.mItem.getRegion());
 
-        CircularImageView circularImageView = holder.mView.findViewById(R.id.imageViewBandera);
-        circularImageView.setCircleColor(Color.LTGRAY);
-        circularImageView.setBorderWidth(2f);
-        circularImageView.setBorderColor(Color.GRAY);
+        holder.nombre.setText(holder.mItem.getName());
+
+
+        //CircularImageView circularImageView = holder.mView.findViewById(R.id.imageViewBandera);
+        //circularImageView.setCircleColor(Color.LTGRAY);
+        //circularImageView.setBorderWidth(2f);
+        //circularImageView.setBorderColor(Color.GRAY);
 
         Glide.with(ctx)
                 .load("https://www.countryflags.io/"+holder.mItem.alpha2Code+"/flat/64.png")
                 .centerCrop()
-                .into(circularImageView);
+                .into(holder.bandera);
 
         Glide.with(ctx)
                 .load(R.drawable.ic_chevron_right_grey_24dp)
@@ -76,8 +76,6 @@ public class MycountryRecyclerViewAdapter extends RecyclerView.Adapter<Mycountry
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView nombre;
-        public final TextView capital;
-        public final TextView region;
         public final ImageView bandera;
         public final ImageView flecha;
         public Country mItem;
@@ -86,8 +84,6 @@ public class MycountryRecyclerViewAdapter extends RecyclerView.Adapter<Mycountry
             super(view);
             mView = view;
             nombre = view.findViewById(R.id.textViewNombreEdit);
-            capital= view.findViewById(R.id.textViewCapitalEdit);
-            region = view.findViewById(R.id.textViewRegionEdit);
             bandera = view.findViewById(R.id.imageViewBandera);
             flecha = view.findViewById(R.id.imageViewFlecha);
         }

@@ -18,4 +18,10 @@
     <string name="menu_tittle_log_out">Log out</string>
     <string name="menu_tittle_quiz">Try quiz</string>
     <string name="btn_finish_quiz">End quiz</string>
+    <string name="btn_next_question">Next</string>
+    <string name="tittle_question_one">Which is the capital of </string>
+    <string name="tittle_question_two">Which is the currency of </string>
+    <string name="tittle_question_three">What country is bordering on </string>
+    <string name="tittle_question_four">What country is the flag from </string>
+    <string name="tittle_question_five">Which is the language of </string>
 </resources>

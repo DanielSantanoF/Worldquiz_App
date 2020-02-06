@@ -1,7 +1,6 @@
 package com.dsantano.worldquiz_app;
 
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -70,6 +69,11 @@ public class MainActivity extends AppCompatActivity implements ICountryListener 
             case R.id.menuItemLogOut:
                 logOut();
                 return true;
+            case R.id.menuItemTryQuiz:
+                Intent in = new Intent(MainActivity.this, QuizActivity.class);
+                in.putExtra("uid", FirebaseAuth.getInstance().getUid());
+                startActivity(in);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -100,12 +104,9 @@ public class MainActivity extends AppCompatActivity implements ICountryListener 
     @Override
     public void onCountryClick(Country c) {
         Intent i = new Intent(this,
-                DetailActivity.class);
+                CountryDetailActivity.class);
         i.putExtra("alpha", c.getAlpha2Code());
         startActivity(i);
 
     }
-
-
-
 }

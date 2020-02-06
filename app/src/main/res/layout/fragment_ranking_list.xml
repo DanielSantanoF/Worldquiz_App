@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/listRanking"
-    android:name="com.dsantano.worldquiz_app.fragments.country.countryFragment"
+    android:name="com.dsantano.worldquiz_app.fragments.user.rankingFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
+    android:paddingLeft="8dp"
+    android:paddingTop="8dp"
+    android:paddingRight="8dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".fragments.country.countryFragment"
-    tools:listitem="@layout/fragment_country" />
+    tools:context=".fragments.user.rankingFragment"
+    tools:listitem="@layout/fragment_ranking" />

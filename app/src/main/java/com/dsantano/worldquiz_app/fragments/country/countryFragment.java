@@ -16,8 +16,6 @@ import android.widget.Toast;
 
 import com.dsantano.worldquiz_app.Interfaces.ICountryListener;
 import com.dsantano.worldquiz_app.R;
-import com.dsantano.worldquiz_app.fragments.country.dummy.DummyContent;
-import com.dsantano.worldquiz_app.fragments.country.dummy.DummyContent.DummyItem;
 import com.dsantano.worldquiz_app.models.Country;
 import com.dsantano.worldquiz_app.retrofit.generator.CountryGenerator;
 import com.dsantano.worldquiz_app.retrofit.services.CountryService;

@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".QuizActivity">
+
+    <ScrollView
+        android:id="@+id/ScrollViewQuiz"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/CardViewQuestionOne"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="285dp"
+                tools:layout_editor_absoluteY="571dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="187dp">
+
+                    <TextView
+                        android:id="@+id/textViewTittleQuestionOne"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="TextView"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonOneQuestionOne"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="RadioButton"
+                        app:layout_constraintEnd_toEndOf="@+id/textViewTittleQuestionOne"
+                        app:layout_constraintStart_toStartOf="@+id/textViewTittleQuestionOne"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewTittleQuestionOne" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonTwoQuestionOne"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="RadioButton"
+                        app:layout_constraintEnd_toEndOf="@+id/radioButtonOneQuestionOne"
+                        app:layout_constraintStart_toStartOf="@+id/radioButtonOneQuestionOne"
+                        app:layout_constraintTop_toBottomOf="@+id/radioButtonOneQuestionOne" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonThreeQuestionOne"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="RadioButton"
+                        app:layout_constraintEnd_toEndOf="@+id/radioButtonTwoQuestionOne"
+                        app:layout_constraintStart_toStartOf="@+id/radioButtonTwoQuestionOne"
+                        app:layout_constraintTop_toBottomOf="@+id/radioButtonTwoQuestionOne" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/CardViewQuestionTwo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="285dp"
+                tools:layout_editor_absoluteY="571dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="187dp">
+
+                    <TextView
+                        android:id="@+id/textViewTittleQuestionTwo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="TextView"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonOneQuestionTwo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="RadioButton"
+                        app:layout_constraintEnd_toEndOf="@+id/textViewTittleQuestionTwo"
+                        app:layout_constraintStart_toStartOf="@+id/textViewTittleQuestionTwo"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewTittleQuestionTwo" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonTwoQuestionTwo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="RadioButton"
+                        app:layout_constraintEnd_toEndOf="@+id/radioButtonOneQuestionTwo"
+                        app:layout_constraintStart_toStartOf="@+id/radioButtonOneQuestionTwo"
+                        app:layout_constraintTop_toBottomOf="@+id/radioButtonOneQuestionTwo" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonThreeQuestionTwo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="RadioButton"
+                        app:layout_constraintEnd_toEndOf="@+id/radioButtonTwoQuestionTwo"
+                        app:layout_constraintStart_toStartOf="@+id/radioButtonTwoQuestionTwo"
+                        app:layout_constraintTop_toBottomOf="@+id/radioButtonTwoQuestionTwo" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/CardViewQuestionThree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="285dp"
+                tools:layout_editor_absoluteY="571dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="187dp">
+
+                    <TextView
+                        android:id="@+id/textViewTittleQuestionThree"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="TextView"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonOneQuestionThree"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="RadioButton"
+                        app:layout_constraintEnd_toEndOf="@+id/textViewTittleQuestionThree"
+                        app:layout_constraintStart_toStartOf="@+id/textViewTittleQuestionThree"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewTittleQuestionThree" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonTwoQuestionThree"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="RadioButton"
+                        app:layout_constraintEnd_toEndOf="@+id/radioButtonOneQuestionThree"
+                        app:layout_constraintStart_toStartOf="@+id/radioButtonOneQuestionThree"
+                        app:layout_constraintTop_toBottomOf="@+id/radioButtonOneQuestionThree" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonThreeQuestionThree"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="RadioButton"
+                        app:layout_constraintEnd_toEndOf="@+id/radioButtonTwoQuestionThree"
+                        app:layout_constraintStart_toStartOf="@+id/radioButtonTwoQuestionThree"
+                        app:layout_constraintTop_toBottomOf="@+id/radioButtonTwoQuestionThree" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/CardViewQuestionFour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="285dp"
+                tools:layout_editor_absoluteY="571dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="187dp">
+
+                    <TextView
+                        android:id="@+id/textViewTittleQuestionFour"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="TextView"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonOneQuestionFour"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="RadioButton"
+                        app:layout_constraintEnd_toEndOf="@+id/textViewTittleQuestionFour"
+                        app:layout_constraintStart_toStartOf="@+id/textViewTittleQuestionFour"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewTittleQuestionFour" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonTwoQuestionFour"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="RadioButton"
+                        app:layout_constraintEnd_toEndOf="@+id/radioButtonOneQuestionFour"
+                        app:layout_constraintStart_toStartOf="@+id/radioButtonOneQuestionFour"
+                        app:layout_constraintTop_toBottomOf="@+id/radioButtonOneQuestionFour" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonThreeQuestionFour"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="RadioButton"
+                        app:layout_constraintEnd_toEndOf="@+id/radioButtonTwoQuestionFour"
+                        app:layout_constraintStart_toStartOf="@+id/radioButtonTwoQuestionFour"
+                        app:layout_constraintTop_toBottomOf="@+id/radioButtonTwoQuestionFour" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/CardViewQuestionFive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="285dp"
+                tools:layout_editor_absoluteY="571dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="187dp">
+
+                    <TextView
+                        android:id="@+id/textViewTittleQuestionFive"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="TextView"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonOneQuestionFive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="RadioButton"
+                        app:layout_constraintEnd_toEndOf="@+id/textViewTittleQuestionFive"
+                        app:layout_constraintStart_toStartOf="@+id/textViewTittleQuestionFive"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewTittleQuestionFive" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonTwoQuestionFive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="RadioButton"
+                        app:layout_constraintEnd_toEndOf="@+id/radioButtonOneQuestionFive"
+                        app:layout_constraintStart_toStartOf="@+id/radioButtonOneQuestionFive"
+                        app:layout_constraintTop_toBottomOf="@+id/radioButtonOneQuestionFive" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonThreeQuestionFive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="RadioButton"
+                        app:layout_constraintEnd_toEndOf="@+id/radioButtonTwoQuestionFive"
+                        app:layout_constraintStart_toStartOf="@+id/radioButtonTwoQuestionFive"
+                        app:layout_constraintTop_toBottomOf="@+id/radioButtonTwoQuestionFive" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/buttonFinishQuiz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:text="@string/btn_finish_quiz"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

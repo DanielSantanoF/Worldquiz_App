@@ -13,4 +13,13 @@ public class Users {
     private String photo;
     private int score;
     private String uid;
+
+    public double getEffectiveness() {
+
+        if(gamesPlayed == 0) {
+            return 0;
+        } else {
+            return getScore() / getGamesPlayed();
+        }
+    }
 }

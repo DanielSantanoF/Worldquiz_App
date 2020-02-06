@@ -6,6 +6,6 @@
     <item
         android:id="@+id/action_filter_ranking"
         android:icon="@drawable/ic_repeat_one_white_24dp"
-        android:title="Ordenar Ranking"
+        android:title="@string/filter"
         app:showAsAction="ifRoom" />
 </menu>

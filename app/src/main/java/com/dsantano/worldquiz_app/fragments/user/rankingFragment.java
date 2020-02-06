@@ -130,7 +130,7 @@ public class rankingFragment extends Fragment {
                             usersList,
                             false);
                     recyclerView.setAdapter(myrankingRecyclerViewAdapter);
-                    Toast.makeText(mContext, getResources().getString(R.string.score), Toast.LENGTH_SHORT);
+                    Toast.makeText(mContext, getResources().getString(R.string.score), Toast.LENGTH_SHORT).show();
                 } else {
                     item.setIcon(R.drawable.ic_repeat_white_24dp);
                     Collections.sort(usersList, new EfectivityComparator());

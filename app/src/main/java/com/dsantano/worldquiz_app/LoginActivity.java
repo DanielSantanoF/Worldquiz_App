@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
@@ -52,7 +53,8 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseUser user;
     Map<String, Object> userfb;
     ImageView ivLogo;
-    String nameOfEmail, defaultPhoto, email, photo, name;;
+    String nameOfEmail, defaultPhoto, email, photo, name;
+    LottieAnimationView loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -201,13 +203,13 @@ public class LoginActivity extends AppCompatActivity {
 
     public void checkIsLogged(){
         btnLogin = findViewById(R.id.buttonLogin);
-        progressBar = findViewById(R.id.progressBarLogin);
+        loading = findViewById(R.id.loading);
         if(FirebaseAuth.getInstance().getUid() != null){
             btnLogin.setVisibility(View.GONE);
-            progressBar.setVisibility(View.VISIBLE);
+            loading.setVisibility(View.VISIBLE);
         } else {
             btnLogin.setVisibility(View.VISIBLE);
-            progressBar.setVisibility(View.GONE);
+            loading.setVisibility(View.GONE);
         }
     }
 

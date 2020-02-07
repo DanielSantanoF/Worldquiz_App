@@ -21,4 +21,6 @@
     <string name="filter">Filtrar..</string>
     <string name="effectivity">Efectividad</string>
     <string name="score">Puntuación</string>
+    <string name="country">Países</string>
+    <string name="map">Mapa</string>
 </resources>

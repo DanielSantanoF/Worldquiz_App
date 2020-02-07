@@ -21,4 +21,6 @@
     <string name="filter">Filter by..</string>
     <string name="effectivity">Efectiveness</string>
     <string name="score">Score</string>
+    <string name="country">Countries</string>
+    <string name="map">Map</string>
 </resources>

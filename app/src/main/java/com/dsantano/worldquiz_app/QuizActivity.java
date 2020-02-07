@@ -442,7 +442,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     }
                 }
-                if(crtAnswer.equals(thirdAnswer)){
+                if(crtAnswer.equals(thirdAnswer) || secondAnswer.equals(thirdAnswer)){
                     for(int i = 0; i< 2 ; i++) {
                         countrySelected = listResultFromAsyncTask.get(r3.nextInt(250 - 1) + 1);
                         if (crtAnswer.equals(countrySelected.getLanguages().get(0).getName())) {
@@ -455,7 +455,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     }
                 }
-                if(crtAnswer.equals(fourthAnswer)){
+                if(crtAnswer.equals(fourthAnswer)|| secondAnswer.equals(fourthAnswer) || thirdAnswer.equals(fourthAnswer)){
                     for(int i = 0; i< 2 ; i++) {
                         countrySelected = listResultFromAsyncTask.get(r3.nextInt(250 - 1) + 1);
                         if (crtAnswer.equals(countrySelected.getLanguages().get(0).getName())) {

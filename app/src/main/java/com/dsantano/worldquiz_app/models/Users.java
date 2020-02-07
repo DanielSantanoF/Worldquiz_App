@@ -17,6 +17,7 @@ public class Users {
     private String photo;
     private int score;
     private String uid;
+    private String email;
 
     public double getEffectiveness() {
         double result;

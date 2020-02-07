@@ -3,6 +3,9 @@ package com.dsantano.worldquiz_app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,6 +41,8 @@ import retrofit2.Response;
 public class QuizActivity extends AppCompatActivity implements View.OnClickListener{
 
     List<Country> listCountrys;
+    List<Country> listResultFromAsyncTask;
+    Country countrySelected;
     CountryService service;
     int numCountrysForQuiz, gamesPlayedByUser, numQuestion, answer, correctAnswer, puntuation;
     String uid;
@@ -59,6 +64,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         puntuation = 0;
         answer = 0;
         listCountrys = new ArrayList<Country>();
+        listResultFromAsyncTask = new ArrayList<Country>();
         uid = getIntent().getExtras().get("uid").toString();
         txtTittle = findViewById(R.id.textViewTittleQuestion);
         btnAnswer1 = findViewById(R.id.buttonAnswerOne);
@@ -137,12 +143,69 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         Country fourthCountry = listCountrys.get(r.nextInt(10 - 8) + 8);
         switch (numQuestionToLoad){
             case 1:
+                Random r5 = new Random();
                 questionTittleFromR = getResources().getString(R.string.tittle_question_one);
                 txtTittle.setText(questionTittleFromR + " " +correctCountry.getName() + "?");
                 crtAnswer = correctCountry.getCapital();
                 secondAnswer = secondCountry.getCapital();
                 thirdAnswer = thirdCountry.getCapital();
                 fourthAnswer = fourthCountry.getCapital();
+                if(correctCountry.getCapital().isEmpty()){
+                    crtAnswer = getResources().getString(R.string.dont_have_border);
+                } else{
+                    crtAnswer = correctCountry.getCapital();
+                }
+                if(secondCountry.getCapital().isEmpty()){
+                    for(int i = 0; i< 2 ; i++) {
+                        countrySelected = listResultFromAsyncTask.get(r5.nextInt(250 - 1) + 1);
+                        if (countrySelected.getCapital().isEmpty()) {
+                            i = 0;
+                        } else if(crtAnswer.equals(countrySelected.getCapital())){
+                            i = 0;
+                        } else {
+                            secondAnswer = countrySelected.getCapital();
+                            i = 3;
+                        }
+                    }
+                } else{
+                    secondAnswer = secondCountry.getCapital();
+                }
+                if(thirdCountry.getCapital().isEmpty()){
+                    for(int i = 0; i< 2 ; i++) {
+                        countrySelected = listResultFromAsyncTask.get(r5.nextInt(250 - 1) + 1);
+                        if (countrySelected.getCapital().isEmpty()) {
+                            i = 0;
+                        } else if(crtAnswer.equals(countrySelected.getCapital())){
+                            i = 0;
+                        } else if(crtAnswer.equals(secondAnswer)){
+                            i = 0;
+                        } else {
+                            thirdAnswer = countrySelected.getCapital();
+                            i = 3;
+                        }
+                    }
+                } else{
+                    thirdAnswer = thirdCountry.getCapital();
+                }
+                if(fourthCountry.getCapital().isEmpty()){
+                    for(int i = 0; i< 2 ; i++) {
+                        countrySelected = listResultFromAsyncTask.get(r5.nextInt(250 - 1) + 1);
+                        if (countrySelected.getCapital().isEmpty()) {
+                            i = 0;
+                        } else if(crtAnswer.equals(countrySelected.getCapital())){
+                            i = 0;
+                        } else if(crtAnswer.equals(secondAnswer)){
+                            i = 0;
+                        } else if(crtAnswer.equals(thirdAnswer)){
+                            i = 0;
+                        } else {
+                            fourthAnswer = countrySelected.getCapital();
+                            i = 3;
+                        }
+                    }
+                } else{
+                    fourthAnswer = fourthCountry.getCapital();
+                }
                 switch (correctAnswer){
                     case 1:
                         btnAnswer1.setText(crtAnswer);
@@ -171,12 +234,52 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case 2:
+                Random r4 = new Random();
                 questionTittleFromR = getResources().getString(R.string.tittle_question_two);
                 txtTittle.setText(questionTittleFromR + " " +correctCountry.getName() + "?");
                 crtAnswer = correctCountry.getCurrencies().get(0).getName() + " " +correctCountry.getCurrencies().get(0).getSymbol();
-                secondAnswer = secondCountry.getCurrencies().get(0).getName() + " " +correctCountry.getCurrencies().get(0).getSymbol();
-                thirdAnswer = thirdCountry.getCurrencies().get(0).getName() + " " +correctCountry.getCurrencies().get(0).getSymbol();
-                fourthAnswer = fourthCountry.getCurrencies().get(0).getName() + " " +correctCountry.getCurrencies().get(0).getSymbol();
+                secondAnswer = secondCountry.getCurrencies().get(0).getName() + " " +secondCountry.getCurrencies().get(0).getSymbol();
+                thirdAnswer = thirdCountry.getCurrencies().get(0).getName() + " " +thirdCountry.getCurrencies().get(0).getSymbol();
+                fourthAnswer = fourthCountry.getCurrencies().get(0).getName() + " " +fourthCountry.getCurrencies().get(0).getSymbol();
+                if(crtAnswer.equals(secondAnswer)){
+                    for(int i = 0; i< 2 ; i++) {
+                        countrySelected = listResultFromAsyncTask.get(r4.nextInt(250 - 1) + 1);
+                        if (crtAnswer.equals(countrySelected.getCurrencies().get(0).getName() + " " +countrySelected.getCurrencies().get(0).getSymbol())) {
+                            i = 0;
+                        } else {
+                            secondAnswer = countrySelected.getCurrencies().get(0).getName() + " " +countrySelected.getCurrencies().get(0).getSymbol();
+                            i = 3;
+                        }
+                    }
+                }
+                if(crtAnswer.equals(thirdAnswer)){
+                    for(int i = 0; i< 2 ; i++) {
+                        countrySelected = listResultFromAsyncTask.get(r4.nextInt(250 - 1) + 1);
+                        if (crtAnswer.equals(countrySelected.getCurrencies().get(0).getName() + " " +countrySelected.getCurrencies().get(0).getSymbol())) {
+                            i = 0;
+                        } else if(secondAnswer.equals(countrySelected.getCurrencies().get(0).getName() + " " +countrySelected.getCurrencies().get(0).getSymbol())){
+                            i = 0;
+                        } else {
+                            thirdAnswer = countrySelected.getCurrencies().get(0).getName() + " " +countrySelected.getCurrencies().get(0).getSymbol();
+                            i = 3;
+                        }
+                    }
+                }
+                if(crtAnswer.equals(fourthAnswer)){
+                    for(int i = 0; i< 2 ; i++) {
+                        countrySelected = listResultFromAsyncTask.get(r4.nextInt(250 - 1) + 1);
+                        if (crtAnswer.equals(countrySelected.getCurrencies().get(0).getName() + " " +countrySelected.getCurrencies().get(0).getSymbol())) {
+                            i = 0;
+                        } else if(secondAnswer.equals(countrySelected.getCurrencies().get(0).getName() + " " +countrySelected.getCurrencies().get(0).getSymbol())){
+                            i = 0;
+                        } else if(thirdAnswer.equals(countrySelected.getCurrencies().get(0).getName() + " " +countrySelected.getCurrencies().get(0).getSymbol())){
+                            i = 0;
+                        } else {
+                            fourthAnswer = countrySelected.getCurrencies().get(0).getName() + " " +countrySelected.getCurrencies().get(0).getSymbol();
+                            i = 3;
+                        }
+                    }
+                }
                 switch (correctAnswer){
                     case 1:
                         btnAnswer1.setText(crtAnswer);
@@ -205,6 +308,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case 3:
+                Random r2 = new Random();
                 questionTittleFromR = getResources().getString(R.string.tittle_question_three);
                 txtTittle.setText(questionTittleFromR + " " +correctCountry.getName() + "?");
                 if(correctCountry.getBorders().isEmpty()){
@@ -213,17 +317,42 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                     crtAnswer = correctCountry.getBorders().get(0);
                 }
                 if(secondCountry.getBorders().isEmpty()){
+                    for(int i = 0; i< 2 ; i++){
+                        countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
+                        if(countrySelected.getBorders().isEmpty()){
+                            i = 0;
+                        } else {
+                            secondAnswer = countrySelected.getBorders().get(0);
+                            i = 3;
+                        }
+                    }
                     secondAnswer = getResources().getString(R.string.dont_have_border);
                 } else {
                     secondAnswer = secondCountry.getBorders().get(0);
                 }
                 if(thirdCountry.getBorders().isEmpty()){
-                    thirdAnswer = getResources().getString(R.string.dont_have_border);
+                    for(int i = 0; i< 2 ; i++) {
+                        countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
+                        if (countrySelected.getBorders().isEmpty()) {
+                            i = 0;
+                        } else {
+                            thirdAnswer = countrySelected.getBorders().get(0);
+                            i = 3;
+                        }
+                    }
                 } else {
                     thirdAnswer = thirdCountry.getBorders().get(0);
                 }
                 if(fourthCountry.getBorders().isEmpty()){
-                    fourthAnswer = getResources().getString(R.string.dont_have_border);
+                    for(int i = 0; i< 2 ; i++) {
+                        countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
+                        if (countrySelected.getBorders().isEmpty()) {
+                            i = 0;
+                        } else {
+                            fourthAnswer = countrySelected.getBorders().get(0);
+                            i = 3;
+                        }
+                    }
                 } else {
                     fourthAnswer = fourthCountry.getBorders().get(0);
                 }
@@ -294,6 +423,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case 5:
+                Random r3 = new Random();
                 ivFlag.setVisibility(View.GONE);
                 questionTittleFromR = getResources().getString(R.string.tittle_question_five);
                 txtTittle.setText(questionTittleFromR + " " +correctCountry.getName() + "?");
@@ -301,6 +431,45 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 secondAnswer = secondCountry.getLanguages().get(0).getName();
                 thirdAnswer = thirdCountry.getLanguages().get(0).getName();
                 fourthAnswer = fourthCountry.getLanguages().get(0).getName();
+                if(crtAnswer.equals(secondAnswer)){
+                    for(int i = 0; i< 2 ; i++) {
+                        countrySelected = listResultFromAsyncTask.get(r3.nextInt(250 - 1) + 1);
+                        if (crtAnswer.equals(countrySelected.getLanguages().get(0).getName())) {
+                            i = 0;
+                        } else {
+                            secondAnswer = countrySelected.getLanguages().get(0).getName();
+                            i = 3;
+                        }
+                    }
+                }
+                if(crtAnswer.equals(thirdAnswer)){
+                    for(int i = 0; i< 2 ; i++) {
+                        countrySelected = listResultFromAsyncTask.get(r3.nextInt(250 - 1) + 1);
+                        if (crtAnswer.equals(countrySelected.getLanguages().get(0).getName())) {
+                            i = 0;
+                        } else if(secondAnswer.equals(countrySelected.getLanguages().get(0).getName())){
+                            i = 0;
+                        } else {
+                            thirdAnswer = countrySelected.getLanguages().get(0).getName();
+                            i = 3;
+                        }
+                    }
+                }
+                if(crtAnswer.equals(fourthAnswer)){
+                    for(int i = 0; i< 2 ; i++) {
+                        countrySelected = listResultFromAsyncTask.get(r3.nextInt(250 - 1) + 1);
+                        if (crtAnswer.equals(countrySelected.getLanguages().get(0).getName())) {
+                            i = 0;
+                        } else if(secondAnswer.equals(countrySelected.getLanguages().get(0).getName())){
+                            i = 0;
+                        } else if(thirdAnswer.equals(countrySelected.getLanguages().get(0).getName())){
+                            i = 0;
+                        } else {
+                            fourthAnswer = countrySelected.getLanguages().get(0).getName();
+                            i = 3;
+                        }
+                    }
+                }
                 switch (correctAnswer){
                     case 1:
                         btnAnswer1.setText(crtAnswer);
@@ -359,6 +528,11 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                         db.collection("users")
                                 .document(uid)
                                 .update(userfb);
+                        Intent i = new Intent(QuizActivity.this, QuizEndedActivity.class);
+                        i.putExtra("puntuation", puntuation);
+                        i.putExtra("uid", uid);
+                        startActivity(i);
+                        finish();
                     } else {
                         Log.d("FB", "Document does not exist!");
                     }
@@ -415,6 +589,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 Random r = new Random();
                 listCountrys.add(countries.get(r.nextInt(250 - 1) + 1));
             }
+            listResultFromAsyncTask.addAll(countries);
             progressBar.setVisibility(View.GONE);
             txtTittle.setVisibility(View.VISIBLE);
             btnAnswer1.setVisibility(View.VISIBLE);
@@ -429,32 +604,46 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            userfb = new HashMap<>();
-            DocumentReference docIdRef = db.collection("users").document(uid);
-            docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            user = document.toObject(Users.class);
-                            if (user != null) {
-                                gamesPlayedByUser = user.getGamesPlayed();
-                                userfb.put("gamesPlayed", gamesPlayedByUser + 1);
-                            }
-                            Log.d("FB", "Document exists!");
-                            db.collection("users")
-                                    .document(uid)
-                                    .update(userfb);
-                        } else {
-                            Log.d("FB", "Document does not exist!");
+            new AlertDialog.Builder(this)
+                    .setIcon(R.drawable.ic_priority_high_black_24dp)
+                    .setTitle(R.string.quit)
+                    .setMessage(R.string.really_quit)
+                    .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            userfb = new HashMap<>();
+                            DocumentReference docIdRef = db.collection("users").document(uid);
+                            docIdRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        DocumentSnapshot document = task.getResult();
+                                        if (document.exists()) {
+                                            user = document.toObject(Users.class);
+                                            if (user != null) {
+                                                gamesPlayedByUser = user.getGamesPlayed();
+                                                userfb.put("gamesPlayed", gamesPlayedByUser + 1);
+                                            }
+                                            Log.d("FB", "Document exists!");
+                                            db.collection("users")
+                                                    .document(uid)
+                                                    .update(userfb);
+                                        } else {
+                                            Log.d("FB", "Document does not exist!");
+                                        }
+                                    } else {
+                                        Log.d("FB", "Failed with: ", task.getException());
+                                    }
+                                }
+                            });
+                            QuizActivity.this.finish();
                         }
-                    } else {
-                        Log.d("FB", "Failed with: ", task.getException());
-                    }
-                }
-            });
+                    })
+                    .setNegativeButton(R.string.no, null)
+                    .show();
+            return true;
+        } else {
+            return super.onKeyDown(keyCode, event);
         }
-        return super.onKeyDown(keyCode, event);
     }
 }

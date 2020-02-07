@@ -25,4 +25,8 @@
     <string name="tittle_question_four">¿De que país es la bandera </string>
     <string name="tittle_question_five">¿Cual es el idioma de </string>
     <string name="dont_have_border">No tiene</string>
+    <string name="quit">¿Salir del quiz?</string>
+    <string name="really_quit">Si sales del quiz contara como una partida jugada pero con puntuación de 0</string>
+    <string name="yes">Si salir</string>
+    <string name="no">No seguir jugando</string>
 </resources>

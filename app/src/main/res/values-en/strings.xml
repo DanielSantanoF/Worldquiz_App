@@ -24,4 +24,9 @@
     <string name="tittle_question_three">What country is bordering on </string>
     <string name="tittle_question_four">What country is the flag from </string>
     <string name="tittle_question_five">Which is the language of </string>
+    <string name="dont_have_border">Dont have</string>
+    <string name="quit">Go out of quiz?</string>
+    <string name="really_quit">If you go out it will count as a game played but with a score of 0</string>
+    <string name="yes">Yes go out</string>
+    <string name="no">No keep playing</string>
 </resources>

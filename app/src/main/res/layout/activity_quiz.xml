@@ -69,16 +69,15 @@
         android:id="@+id/buttonNextQuiz"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
         android:background="@drawable/round_blue_bg"
         android:backgroundTint="@color/colorPrimaryDark"
         android:foreground="?attr/selectableItemBackground"
         android:text="@string/btn_next_question"
         android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/guideline8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAnswerFour" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonAnswerFour"
@@ -111,4 +110,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.91" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.dsantano.worldquiz_app.models.Country;
 import com.dsantano.worldquiz_app.models.UnsplashPhotosResult;
 import com.dsantano.worldquiz_app.retrofit.generator.CountryGenerator;
@@ -115,6 +116,7 @@ public class CountryDetailActivity extends AppCompatActivity {
 
                     Glide.with(CountryDetailActivity.this)
                             .load("https://www.countryflags.io/"+response.body().alpha2Code+"/flat/64.png")
+                            .thumbnail(Glide.with(CountryDetailActivity.this).load(R.drawable.loading_gif).transform(new CircleCrop()))
                             .into(bandera);
                     new DowloadPhotosOfCountry().execute();
                 } else {

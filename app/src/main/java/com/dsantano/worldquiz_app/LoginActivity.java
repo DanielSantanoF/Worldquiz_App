@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -47,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
     private final int GOOGLE_LOGIN = 123;
     FirebaseAuth mAuth;
     Button btnLogin;
-    ProgressBar progressBar;
+    TextView txtNameApp;
     GoogleSignInClient mGoogleLogin;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseUser user;
@@ -204,11 +205,14 @@ public class LoginActivity extends AppCompatActivity {
     public void checkIsLogged(){
         btnLogin = findViewById(R.id.buttonLogin);
         loading = findViewById(R.id.loading);
+        txtNameApp = findViewById(R.id.textViewNameAppLogin);
         if(FirebaseAuth.getInstance().getUid() != null){
             btnLogin.setVisibility(View.GONE);
+            txtNameApp.setVisibility(View.GONE);
             loading.setVisibility(View.VISIBLE);
         } else {
             btnLogin.setVisibility(View.VISIBLE);
+            txtNameApp.setVisibility(View.VISIBLE);
             loading.setVisibility(View.GONE);
         }
     }

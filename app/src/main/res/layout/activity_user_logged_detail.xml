@@ -24,9 +24,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/text_username_tittle"
+        android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewUserDetail"
+        app:layout_constraintStart_toStartOf="@+id/imageViewUserDetail"
         app:layout_constraintTop_toBottomOf="@+id/imageViewUserDetail" />
 
     <TextView
@@ -34,9 +36,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:gravity="center"
         android:text="TextView"
+        android:textColor="@android:color/black"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewUserDetail"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/textViewUsernameTittle" />
 
@@ -46,9 +50,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/text_email_tittle"
+        android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewUserDetail"
+        app:layout_constraintStart_toStartOf="@+id/imageViewUserDetail"
         app:layout_constraintTop_toBottomOf="@+id/textViewUsernameUserDetails" />
 
     <TextView
@@ -56,10 +62,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:gravity="center"
         android:text="TextView"
+        android:textColor="@android:color/black"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/textViewEmailTittle" />
 
@@ -68,5 +75,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.15" />
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
 </androidx.constraintlayout.widget.ConstraintLayout>

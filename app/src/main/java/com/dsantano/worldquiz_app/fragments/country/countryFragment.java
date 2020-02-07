@@ -19,6 +19,7 @@ import com.dsantano.worldquiz_app.R;
 import com.dsantano.worldquiz_app.models.Country;
 import com.dsantano.worldquiz_app.retrofit.generator.CountryGenerator;
 import com.dsantano.worldquiz_app.retrofit.services.CountryService;
+import com.google.type.LatLng;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ import retrofit2.Response;
 public class countryFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
-    private int mColumnCount = 1;
+    private int mColumnCount = 2;
     private ICountryListener mListener;
     private MycountryRecyclerViewAdapter adapter;
     private CountryService countryService;

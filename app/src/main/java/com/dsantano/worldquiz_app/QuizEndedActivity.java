@@ -6,7 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
@@ -20,11 +23,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class QuizEndedActivity extends AppCompatActivity {
 
-    String uid, nombreUser, emailUser, photoUser;
+    String uid, nameUser, emailUser, photoUser;
     int puntuation, totalCorrectAnswers;
     Users user;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     ImageView ivFoto;
+    TextView txtScore, txtNumCorrect, txtUsername;
+    Button btnBackToMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +38,28 @@ public class QuizEndedActivity extends AppCompatActivity {
 
         uid = getIntent().getExtras().get("uid").toString();
         puntuation = getIntent().getExtras().get("puntuation").hashCode();
-        getUser();
 
         ivFoto = findViewById(R.id.imageViewUserEndQuiz);
+        txtUsername = findViewById(R.id.textViewUsernameQuizEnd);
+        txtScore = findViewById(R.id.textViewPuntuationObtainedEndQuiz);
+        txtNumCorrect = findViewById(R.id.textViewNumberOfCorrectAnswersEndQuiz);
+        btnBackToMenu = findViewById(R.id.buttonGoToMenuEndQuiz);
 
-        Glide
-                .with(this)
-                .load(photoUser)
-                .transform(new CircleCrop())
-                .error(Glide.with(this).load(R.drawable.image_not_loaded_icon).transform(new CircleCrop()))
-                .thumbnail(Glide.with(this).load(R.drawable.loading_gif).transform(new CircleCrop()))
-                .into(ivFoto);
+        totalCorrectAnswers = puntuation/2;
+
+        getUser();
+
+        btnBackToMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(QuizEndedActivity.this, MainActivity.class);
+                i.putExtra("email", emailUser);
+                i.putExtra("photo", photoUser);
+                i.putExtra("name", nameUser);
+                startActivity(i);
+                finish();
+            }
+        });
     }
 
     public void getUser(){
@@ -56,10 +72,19 @@ public class QuizEndedActivity extends AppCompatActivity {
                     if (document.exists()) {
                         user = document.toObject(Users.class);
                         if (user != null) {
-                            nombreUser = user.getName();
+                            nameUser = user.getName();
                             emailUser = user.getEmail();
                             photoUser = user.getPhoto();
-                            totalCorrectAnswers = puntuation / 2;
+                            txtUsername.setText(nameUser);
+                            txtScore.setText(puntuation + " " +getResources().getString(R.string.puntos));
+                            txtNumCorrect.setText(totalCorrectAnswers + "/5 " + getResources().getString(R.string.question));
+                            Glide
+                                    .with(QuizEndedActivity.this)
+                                    .load(photoUser)
+                                    .transform(new CircleCrop())
+                                    .error(Glide.with(QuizEndedActivity.this).load(R.drawable.image_not_loaded_icon).transform(new CircleCrop()))
+                                    .thumbnail(Glide.with(QuizEndedActivity.this).load(R.drawable.loading_gif).transform(new CircleCrop()))
+                                    .into(ivFoto);
                         }
                         Log.d("FB", "Document exists!");
                     } else {

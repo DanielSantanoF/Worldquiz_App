@@ -36,4 +36,10 @@
     <string name="really_quit">If you go out it will count as a game played but with a score of 0</string>
     <string name="yes">Yes go out</string>
     <string name="no">No keep playing</string>
+    <string name="txt_end_quiz">Congratulations you finish the quiz!</string>
+    <string name="txt_puntuation">Puntuation:</string>
+    <string name="puntos">Points</string>
+    <string name="txt_correct_answers">Correct answers:</string>
+    <string name="question">questions</string>
+    <string name="btn_back_to_menu">Back to menu</string>
 </resources>

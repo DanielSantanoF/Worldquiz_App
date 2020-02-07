@@ -36,8 +36,8 @@ public class UserLoggedDetailActivity extends AppCompatActivity {
                 .with(this)
                 .load(photo)
                 .transform(new CircleCrop())
-                .error(Glide.with(this).load(R.drawable.image_not_loaded_icon))
-                .thumbnail(Glide.with(this).load(R.drawable.loading_gif))
+                .error(Glide.with(this).load(R.drawable.image_not_loaded_icon).transform(new CircleCrop()))
+                .thumbnail(Glide.with(this).load(R.drawable.loading_gif).transform(new CircleCrop()))
                 .into(ivUser);
     }
 }

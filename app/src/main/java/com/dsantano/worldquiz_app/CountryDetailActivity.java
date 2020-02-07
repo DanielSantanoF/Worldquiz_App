@@ -105,7 +105,17 @@ public class CountryDetailActivity extends AppCompatActivity {
                     nameCountry = response.body().getName();
                     nombre.setText(nameCountry);
                     capital.setText(response.body().getCapital());
-                    poblacion.setText(response.body().getPopulation() + "");
+                    if(response.body().getPopulation() >= 1000000) {
+                        poblacion.setText((response.body().getPopulation() / 1000000) + "M");
+                    } else if(response.body().getPopulation() >= 100000) {
+                        poblacion.setText((response.body().getPopulation() / 100000) + "K");
+                    } else if(response.body().getPopulation() >= 10000) {
+                        poblacion.setText((response.body().getPopulation() / 10000) + "K");
+                    } else if(response.body().getPopulation() >= 1000) {
+                        poblacion.setText((response.body().getPopulation() / 1000) + "K");
+                    } else {
+                        poblacion.setText((response.body().getPopulation()));
+                    }
                     region.setText(response.body().getRegion());
                     money.setText(response.body().getCurrencies().get(0).name + "");
                     languaje.setText(response.body().getLanguages().get(0).name + "");
@@ -155,7 +165,6 @@ public class CountryDetailActivity extends AppCompatActivity {
             }
             return result;
         }
-
         @Override
         protected void onPostExecute(UnsplashPhotosResult unsplashPhotosResult) {
             sliderView = findViewById(R.id.imageSlider);

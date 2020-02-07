@@ -53,7 +53,7 @@ public class MyrankingRecyclerViewAdapter extends RecyclerView.Adapter<Myranking
         holder.tvName.setText(holder.mItem.getName());
         holder.tvGame.setText(String.valueOf(holder.mItem.getGamesPlayed()));
         holder.tvScore.setText(String.valueOf(holder.mItem.getScore()));
-        holder.tvPosition.setVisibility(View.GONE);
+        holder.ivPosition.setVisibility(View.GONE);
 
         Glide.with(ctx).load(holder.mItem.getPhoto()).apply(RequestOptions.bitmapTransform(new CircleCrop())).error(Glide.with(ctx).load("https://www.kindpng.com/picc/m/381-3817314_transparent-groups-of-people-png-user-icon-round.png").apply(RequestOptions.bitmapTransform(new CircleCrop()))).into(holder.ivPhoto);
 
@@ -65,7 +65,6 @@ public class MyrankingRecyclerViewAdapter extends RecyclerView.Adapter<Myranking
             holder.tvScore.setVisibility(View.INVISIBLE);
             holder.ivMedal.setVisibility(View.INVISIBLE);
             holder.ivGame.setVisibility(View.INVISIBLE);
-            holder.divider.setVisibility(View.GONE);
         } else {
             holder.tvEffectivity.setVisibility(View.GONE);
             holder.ivEffectivity.setVisibility(View.GONE);
@@ -73,36 +72,35 @@ public class MyrankingRecyclerViewAdapter extends RecyclerView.Adapter<Myranking
             holder.tvScore.setVisibility(View.VISIBLE);
             holder.ivMedal.setVisibility(View.VISIBLE);
             holder.ivGame.setVisibility(View.VISIBLE);
-            holder.divider.setVisibility(View.VISIBLE);
         }
 
 
         switch (position) {
             case 0:
                 holder.mView.setBackgroundColor(ctx.getResources().getColor(R.color.goldBackground));
-                holder.tvPosition.setVisibility(View.VISIBLE);
+                holder.ivPosition.setVisibility(View.VISIBLE);
                 holder.tvName.setTextColor(ctx.getResources().getColor(R.color.gold));
                 holder.tvScore.setTextColor(ctx.getResources().getColor(R.color.gold));
                 holder.tvGame.setTextColor(ctx.getResources().getColor(R.color.gold));
-                holder.tvPosition.setText("1º");
+                holder.tvEffectivity.setTextColor(ctx.getResources().getColor(R.color.gold));
                 break;
             case 1:
                 holder.mView.setBackgroundColor(ctx.getResources().getColor(R.color.silverBackground));
-                holder.tvPosition.setVisibility(View.VISIBLE);
+                holder.ivPosition.setVisibility(View.VISIBLE);
+                holder.ivPosition.setImageResource(R.drawable.ic_second_svgrepo_com);
                 holder.tvName.setTextColor(ctx.getResources().getColor(R.color.silver));
                 holder.tvScore.setTextColor(ctx.getResources().getColor(R.color.silver));
                 holder.tvGame.setTextColor(ctx.getResources().getColor(R.color.silver));
-                holder.tvPosition.setText("2º");
-                holder.tvPosition.setTextColor(ctx.getResources().getColor(R.color.silver));
+                holder.tvEffectivity.setTextColor(ctx.getResources().getColor(R.color.silver));
                 break;
             case 2:
                 holder.mView.setBackgroundColor(ctx.getResources().getColor(R.color.bronzeBackground));
-                holder.tvPosition.setVisibility(View.VISIBLE);
+                holder.ivPosition.setVisibility(View.VISIBLE);
+                holder.ivPosition.setImageResource(R.drawable.ic_third_svgrepo_com);
                 holder.tvName.setTextColor(ctx.getResources().getColor(R.color.bronze));
                 holder.tvScore.setTextColor(ctx.getResources().getColor(R.color.bronze));
                 holder.tvGame.setTextColor(ctx.getResources().getColor(R.color.bronze));
-                holder.tvPosition.setText("3º");
-                holder.tvPosition.setTextColor(ctx.getResources().getColor(R.color.bronze));
+                holder.tvEffectivity.setTextColor(ctx.getResources().getColor(R.color.bronze));
                 break;
 
         }
@@ -120,13 +118,12 @@ public class MyrankingRecyclerViewAdapter extends RecyclerView.Adapter<Myranking
         public final TextView tvName;
         public final TextView tvScore;
         public final TextView tvGame;
-        public final TextView tvPosition;
         public final TextView tvEffectivity;
         public final ImageView ivPhoto;
         public final ImageView ivMedal;
         public final ImageView ivGame;
         public final ImageView ivEffectivity;
-        public final View divider;
+        public final ImageView ivPosition;
 
         public Users mItem;
 
@@ -136,13 +133,12 @@ public class MyrankingRecyclerViewAdapter extends RecyclerView.Adapter<Myranking
             tvName = view.findViewById(R.id.textViewUsername);
             tvGame = view.findViewById(R.id.textViewGames);
             tvScore = view.findViewById(R.id.textViewScore);
-            tvPosition = view.findViewById(R.id.textViewPosition);
             ivPhoto = view.findViewById(R.id.imageViewPhoto);
             tvEffectivity = view.findViewById(R.id.textViewEffec);
             ivMedal = view.findViewById(R.id.imageViewMedal);
             ivGame = view.findViewById(R.id.imageViewNumGame);
             ivEffectivity = view.findViewById(R.id.imageViewEffec);
-            divider = view.findViewById(R.id.divider);
+            ivPosition = view.findViewById(R.id.imageViewPosition);
         }
 
 

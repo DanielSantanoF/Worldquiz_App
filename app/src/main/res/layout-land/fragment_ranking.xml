@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@android:color/white"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -16,12 +14,12 @@
 
     <ImageView
         android:id="@+id/imageViewPhoto"
-        android:layout_width="73dp"
+        android:layout_width="78dp"
         android:layout_height="69dp"
         android:layout_marginStart="20dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.076"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
         app:layout_constraintVertical_bias="1.0"
@@ -29,20 +27,20 @@
 
     <TextView
         android:id="@+id/textViewUsername"
-        android:layout_width="161dp"
-        android:layout_height="83dp"
+        android:layout_width="360dp"
+        android:layout_height="70dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="16dp"
         android:gravity="center"
         android:text="TextView"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintHorizontal_bias="0.242"
         app:layout_constraintStart_toEndOf="@+id/imageViewPhoto"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -52,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="94dp" />
+        app:layout_constraintGuide_end="123dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
@@ -75,7 +73,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="20dp"
         android:text="1200"
-        android:textSize="16sp"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -84,7 +83,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="1200"
-        android:textSize="16sp"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="@+id/textViewScore"
         app:layout_constraintTop_toTopOf="@+id/guideline5"
@@ -117,12 +117,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="293dp" />
+        app:layout_constraintGuide_end="294dp" />
 
     <ImageView
         android:id="@+id/imageViewNumGame"
-        android:layout_width="21dp"
-        android:layout_height="21dp"
+        android:layout_width="22dp"
+        android:layout_height="24dp"
         android:layout_marginEnd="2dp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewGames"
         app:layout_constraintEnd_toStartOf="@+id/textViewGames"
@@ -134,8 +134,8 @@
 
     <ImageView
         android:id="@+id/imageViewMedal"
-        android:layout_width="21dp"
-        android:layout_height="21dp"
+        android:layout_width="22dp"
+        android:layout_height="24dp"
         android:layout_marginBottom="3dp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewScore"
         app:layout_constraintEnd_toStartOf="@+id/textViewScore"
@@ -151,7 +151,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="TextView"
-        android:textSize="16sp"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
@@ -177,5 +178,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_medal_winner_svgrepo_com" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

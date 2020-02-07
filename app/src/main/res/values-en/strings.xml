@@ -23,4 +23,6 @@
     <string name="score">Score</string>
     <string name="country">Countries</string>
     <string name="map">Map</string>
+    <string name="filteringS">Filter by Score</string>
+    <string name="filteringE">Filter by Effectiveness</string>
 </resources>

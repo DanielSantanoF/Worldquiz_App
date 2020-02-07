@@ -23,4 +23,6 @@
     <string name="score">Puntuación</string>
     <string name="country">Países</string>
     <string name="map">Mapa</string>
+    <string name="filteringS">Filtrar por Puntuación</string>
+    <string name="filteringE">Filtrar por Efectividad</string>
 </resources>

@@ -130,7 +130,7 @@ public class rankingFragment extends Fragment {
                             usersList,
                             false);
                     recyclerView.setAdapter(myrankingRecyclerViewAdapter);
-                    Toast.makeText(mContext, getResources().getString(R.string.score), Toast.LENGTH_SHORT).show();
+                    item.setTitle(getResources().getString(R.string.filteringE));
                 } else {
                     item.setIcon(R.drawable.ic_repeat_white_24dp);
                     Collections.sort(usersList, new EfectivityComparator());
@@ -143,6 +143,7 @@ public class rankingFragment extends Fragment {
 
                     recyclerView.setAdapter(myrankingRecyclerViewAdapter);
                     Toast.makeText(mContext, getResources().getString(R.string.effectivity), Toast.LENGTH_SHORT).show();
+                    item.setTitle(getResources().getString(R.string.filteringS));
                 }
                 order = !order;
                 //TODO ordererRanking();

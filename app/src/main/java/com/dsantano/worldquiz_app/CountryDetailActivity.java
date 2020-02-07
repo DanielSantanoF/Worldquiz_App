@@ -2,10 +2,13 @@ package com.dsantano.worldquiz_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +36,7 @@ import retrofit2.Response;
 public class CountryDetailActivity extends AppCompatActivity {
 
     String alpha, nameCountry;
-    TextView nombre, capital, poblacion, lat1 , lat2 , region,money,languaje;
+    TextView nombre, capital, poblacion, region,money,languaje;
     ImageView foto, bandera, capitaI, moneyI, poblacionI, latI, regionI, languajeI;
     private CountryService service;
     UnspashService unspashService;
@@ -71,8 +74,6 @@ public class CountryDetailActivity extends AppCompatActivity {
                 .load(R.drawable.location)
                 .centerCrop()
                 .into(latI);
-        lat1 = findViewById(R.id.locationDetailEdit1);
-        lat2 = findViewById(R.id.locationDetailEdit2);
         Glide.with(CountryDetailActivity.this)
                 .load(R.drawable.continent)
                 .centerCrop()
@@ -100,18 +101,14 @@ public class CountryDetailActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Country> call, Response<Country> response) {
                 if (response.isSuccessful()) {
-                    c  = response.body();
+                    c = response.body();
                     nameCountry = response.body().getName();
                     nombre.setText(nameCountry);
                     capital.setText(response.body().getCapital());
-                    poblacion.setText(response.body().getPopulation()+"");
-                    if (response.body().getLatlng().size() != 0){
-                        lat1.setText(response.body().getLatlng().get(0)+"");
-                        lat2.setText(response.body().getLatlng().get(1)+"");
-                    }
+                    poblacion.setText(response.body().getPopulation() + "");
                     region.setText(response.body().getRegion());
-                    money.setText(response.body().getCurrencies().get(0).name+"");
-                    languaje.setText(response.body().getLanguages().get(0).name+"");
+                    money.setText(response.body().getCurrencies().get(0).name + "");
+                    languaje.setText(response.body().getLanguages().get(0).name + "");
 
 
                     Glide.with(CountryDetailActivity.this)
@@ -130,6 +127,15 @@ public class CountryDetailActivity extends AppCompatActivity {
                 Toast.makeText(CountryDetailActivity.this, "Error al realizar la petición", Toast.LENGTH_SHORT).show();
             }
         });
+
+        latI.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.es/maps/place/"+c.getName()));
+                CountryDetailActivity.this.startActivity(webIntent);
+            }
+        });
+
     }
 
     public class DowloadPhotosOfCountry extends AsyncTask<Void, Void, UnsplashPhotosResult>{

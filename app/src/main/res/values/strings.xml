@@ -36,4 +36,16 @@
     <string name="really_quit">Si sales del quiz contara como una partida jugada pero con puntuación de 0</string>
     <string name="yes">Si salir</string>
     <string name="no">No seguir jugando</string>
+    <string name="txt_end_quiz">¡Enhorabuena, has terminado el test!</string>
+    <string name="txt_puntuation">Puntuación:</string>
+    <string name="puntos">Puntos</string>
+    <string name="txt_correct_answers">Respuestas correctas:</string>
+    <string name="question">preguntas</string>
+    <string name="btn_back_to_menu">Volver al menú</string>
+    <string name="coin">Filtrar por Moneda</string>
+    <string name="countryFilter">Filtar por Moneda</string>
+    <string name="countryFilter2">Filtrar por Idioma</string>
+    <string name="hintSearch">Nombre, idioma, moneda...</string>
+    <string name="search">Buscar</string>
+    <string name="txt_games_played">Partidas jugadas:</string>
 </resources>

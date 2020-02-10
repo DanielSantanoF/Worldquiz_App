@@ -2,17 +2,15 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="8dp"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:background="@color/colorAccent"
-    tools:context=".QuizActivity">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/textViewTittleQuestion"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="TextView"
         android:textColor="@android:color/white"
@@ -26,37 +24,45 @@
         android:id="@+id/buttonAnswerOne"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="30dp"
+        android:layout_marginEnd="8dp"
         android:text="Button"
-        app:layout_constraintEnd_toEndOf="@+id/textViewTittleQuestion"
-        app:layout_constraintStart_toStartOf="@+id/textViewTittleQuestion"
+        app:layout_constraintEnd_toStartOf="@+id/guideline9"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTittleQuestion" />
 
     <Button
         android:id="@+id/buttonAnswerTwo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="8dp"
         android:text="Button"
-        app:layout_constraintEnd_toEndOf="@+id/buttonAnswerOne"
-        app:layout_constraintStart_toStartOf="@+id/buttonAnswerOne"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAnswerOne" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTittleQuestion" />
 
     <Button
         android:id="@+id/buttonAnswerThree"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
         android:text="Button"
-        app:layout_constraintEnd_toEndOf="@+id/buttonAnswerTwo"
-        app:layout_constraintStart_toStartOf="@+id/buttonAnswerTwo"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAnswerTwo" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAnswerOne" />
 
     <Button
         android:id="@+id/buttonNextQuiz"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_blue_bg"
         android:backgroundTint="@color/colorPrimaryDark"
         android:foreground="?attr/selectableItemBackground"
@@ -64,30 +70,32 @@
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonAnswerFour"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
         android:text="Button"
-        app:layout_constraintEnd_toEndOf="@+id/buttonAnswerThree"
-        app:layout_constraintStart_toStartOf="@+id/buttonAnswerThree"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAnswerThree" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAnswerTwo" />
 
     <ImageView
         android:id="@+id/imageViewFlagQuiz"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
         android:contentDescription="@string/content_description_image_view"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/textViewTittleQuestion"
-        app:layout_constraintEnd_toEndOf="@+id/textViewTittleQuestion"
-        app:layout_constraintStart_toStartOf="@+id/textViewTittleQuestion"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher" />
 
     <ProgressBar
         android:id="@+id/progressBarQuiz"
@@ -97,7 +105,15 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

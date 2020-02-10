@@ -50,7 +50,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     Users user;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     TextView txtTittle;
-    Button btnAnswer1, btnAnswer2, btnAnswer3, btnAnswer4, btnNext, btnFinish;
+    Button btnAnswer1, btnAnswer2, btnAnswer3, btnAnswer4, btnNext;
     ProgressBar progressBar;
     String questionTittleFromR, crtAnswer, secondAnswer, thirdAnswer, fourthAnswer;
     ImageView ivFlag;
@@ -72,7 +72,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         btnAnswer3 = findViewById(R.id.buttonAnswerThree);
         btnAnswer4 = findViewById(R.id.buttonAnswerFour);
         btnNext = findViewById(R.id.buttonNextQuiz);
-        btnFinish = findViewById(R.id.buttonFinishQuiz);
         ivFlag = findViewById(R.id.imageViewFlagQuiz);
         progressBar = findViewById(R.id.progressBarQuiz);
 
@@ -84,7 +83,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         btnAnswer3.setOnClickListener(this);
         btnAnswer4.setOnClickListener(this);
         btnNext.setOnClickListener(this);
-        btnFinish.setOnClickListener(this);
 
     }
 
@@ -116,23 +114,26 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             btnAnswer3.setTextColor(getResources().getColor(R.color.pure_black));
             btnAnswer4.setTextColor(getResources().getColor(R.color.colorPrimary));
         } else if(id == R.id.buttonNextQuiz){
-            btnAnswer1.setTextColor(getResources().getColor(R.color.pure_black));
-            btnAnswer2.setTextColor(getResources().getColor(R.color.pure_black));
-            btnAnswer3.setTextColor(getResources().getColor(R.color.pure_black));
-            btnAnswer4.setTextColor(getResources().getColor(R.color.pure_black));
-            numQuestion = numQuestion + 1;
-            checkPuntuation(answer, correctAnswer);
-            loadQuestion(numQuestion);
-        } else if(id == R.id.buttonFinishQuiz){
-            checkPuntuation(answer, correctAnswer);
-            finishQuiz();
+            if(numQuestion == 5){
+                checkPuntuation(answer, correctAnswer);
+                finishQuiz();
+            } else {
+                btnAnswer1.setTextColor(getResources().getColor(R.color.pure_black));
+                btnAnswer2.setTextColor(getResources().getColor(R.color.pure_black));
+                btnAnswer3.setTextColor(getResources().getColor(R.color.pure_black));
+                btnAnswer4.setTextColor(getResources().getColor(R.color.pure_black));
+                numQuestion = numQuestion + 1;
+                checkPuntuation(answer, correctAnswer);
+                loadQuestion(numQuestion);
+            }
+
         }
     }
 
     public void loadQuestion(int numQuestionToLoad){
+        answer = 1;
         if(numQuestionToLoad >= 5){
-            btnNext.setVisibility(View.GONE);
-            btnFinish.setVisibility(View.VISIBLE);
+            btnNext.setText(R.string.btn_finish_quiz);
         }
         Random r = new Random();
         int numRandom = r.nextInt(3 - 1) + 1;
@@ -237,19 +238,29 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 Random r4 = new Random();
                 questionTittleFromR = getResources().getString(R.string.tittle_question_two);
                 txtTittle.setText(questionTittleFromR + " " +correctCountry.getName() + "?");
-                crtAnswer = correctCountry.getCurrencies().get(0).getName() + " " +correctCountry.getCurrencies().get(0).getSymbol();
-                secondAnswer = secondCountry.getCurrencies().get(0).getName() + " " +secondCountry.getCurrencies().get(0).getSymbol();
-                thirdAnswer = thirdCountry.getCurrencies().get(0).getName() + " " +thirdCountry.getCurrencies().get(0).getSymbol();
-                fourthAnswer = fourthCountry.getCurrencies().get(0).getName() + " " +fourthCountry.getCurrencies().get(0).getSymbol();
+                crtAnswer = correctCountry.getCurrencies().get(0).getName();
+                secondAnswer = secondCountry.getCurrencies().get(0).getName();
+                thirdAnswer = thirdCountry.getCurrencies().get(0).getName();
+                fourthAnswer = fourthCountry.getCurrencies().get(0).getName();
                 if(crtAnswer.equals(secondAnswer)){
                     for(int i = 0; i< 2 ; i++) {
                         countrySelected = listResultFromAsyncTask.get(r4.nextInt(250 - 1) + 1);
                         if (crtAnswer.equals(countrySelected.getCurrencies().get(0).getName() + " " +countrySelected.getCurrencies().get(0).getSymbol())) {
                             i = 0;
                         } else {
-                            secondAnswer = countrySelected.getCurrencies().get(0).getName() + " " +countrySelected.getCurrencies().get(0).getSymbol();
+                            if(countrySelected.getCurrencies().get(0).getSymbol() == null){
+                                secondAnswer = countrySelected.getCurrencies().get(0).getName();
+                            } else {
+                                secondAnswer = countrySelected.getCurrencies().get(0).getName() + " " +countrySelected.getCurrencies().get(0).getSymbol();
+                            }
                             i = 3;
                         }
+                    }
+                } else {
+                    if(secondCountry.getCurrencies().get(0).getSymbol() == null){
+                        secondAnswer = secondCountry.getCurrencies().get(0).getName();
+                    } else {
+                        secondAnswer = secondCountry.getCurrencies().get(0).getName() + " " +secondCountry.getCurrencies().get(0).getSymbol();
                     }
                 }
                 if(crtAnswer.equals(thirdAnswer)){
@@ -260,9 +271,19 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                         } else if(secondAnswer.equals(countrySelected.getCurrencies().get(0).getName() + " " +countrySelected.getCurrencies().get(0).getSymbol())){
                             i = 0;
                         } else {
-                            thirdAnswer = countrySelected.getCurrencies().get(0).getName() + " " +countrySelected.getCurrencies().get(0).getSymbol();
+                            if(countrySelected.getCurrencies().get(0).getSymbol() == null){
+                                thirdAnswer = countrySelected.getCurrencies().get(0).getName();
+                            } else {
+                                thirdAnswer = countrySelected.getCurrencies().get(0).getName() + " " +countrySelected.getCurrencies().get(0).getSymbol();
+                            }
                             i = 3;
                         }
+                    }
+                } else {
+                    if(thirdCountry.getCurrencies().get(0).getSymbol() == null){
+                        thirdAnswer = thirdCountry.getCurrencies().get(0).getName();
+                    } else {
+                        thirdAnswer = thirdCountry.getCurrencies().get(0).getName() + " " +thirdCountry.getCurrencies().get(0).getSymbol();
                     }
                 }
                 if(crtAnswer.equals(fourthAnswer)){
@@ -275,11 +296,22 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                         } else if(thirdAnswer.equals(countrySelected.getCurrencies().get(0).getName() + " " +countrySelected.getCurrencies().get(0).getSymbol())){
                             i = 0;
                         } else {
-                            fourthAnswer = countrySelected.getCurrencies().get(0).getName() + " " +countrySelected.getCurrencies().get(0).getSymbol();
+                            if(countrySelected.getCurrencies().get(0).getSymbol() == null){
+                                fourthAnswer = countrySelected.getCurrencies().get(0).getName();
+                            } else {
+                                fourthAnswer = countrySelected.getCurrencies().get(0).getName() + " " +countrySelected.getCurrencies().get(0).getSymbol();
+                            }
                             i = 3;
                         }
                     }
+                } else {
+                    if(fourthCountry.getCurrencies().get(0).getSymbol() == null){
+                        fourthAnswer = fourthCountry.getCurrencies().get(0).getName();
+                    } else {
+                        fourthAnswer = fourthCountry.getCurrencies().get(0).getName() + " " +fourthCountry.getCurrencies().get(0).getSymbol();
+                    }
                 }
+                crtAnswer = correctCountry.getCurrencies().get(0).getName()+ " " +correctCountry.getCurrencies().get(0).getSymbol();
                 switch (correctAnswer){
                     case 1:
                         btnAnswer1.setText(crtAnswer);
@@ -322,13 +354,33 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                         if(countrySelected.getBorders().isEmpty()){
                             i = 0;
                         } else {
-                            secondAnswer = countrySelected.getBorders().get(0);
-                            i = 3;
+                            if(crtAnswer.equals(countrySelected.getBorders().get(0))){
+                                i = 0;
+                            } else {
+                                secondAnswer = countrySelected.getBorders().get(0);
+                                i = 3;
+                            }
                         }
                     }
-                    secondAnswer = getResources().getString(R.string.dont_have_border);
                 } else {
-                    secondAnswer = secondCountry.getBorders().get(0);
+                    countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
+                    if(crtAnswer.equals(countrySelected.getBorders().get(0))){
+                        for(int i = 0; i< 2 ; i++){
+                            countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
+                            if(countrySelected.getBorders().isEmpty()){
+                                i = 0;
+                            } else {
+                                if(crtAnswer.equals(countrySelected.getBorders().get(0))){
+                                    i = 0;
+                                } else {
+                                    secondAnswer = countrySelected.getBorders().get(0);
+                                    i = 3;
+                                }
+                            }
+                        }
+                    } else {
+                        secondAnswer = countrySelected.getBorders().get(0);
+                    }
                 }
                 if(thirdCountry.getBorders().isEmpty()){
                     for(int i = 0; i< 2 ; i++) {
@@ -336,17 +388,46 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                         if (countrySelected.getBorders().isEmpty()) {
                             i = 0;
                         } else {
-                            thirdAnswer = countrySelected.getBorders().get(0);
-                            i = 3;
+                            if(crtAnswer.equals(countrySelected.getBorders().get(0))){
+                                i = 0;
+                            } else if(secondAnswer.equals(countrySelected.getBorders().get(0))){
+                                i = 0;
+                            } else {
+                                thirdAnswer = countrySelected.getBorders().get(0);
+                                i = 3;
+                            }
                         }
                     }
                 } else {
-                    thirdAnswer = thirdCountry.getBorders().get(0);
+                    countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
+                    if(crtAnswer.equals(countrySelected.getBorders().get(0))){
+                        for(int i = 0; i< 2 ; i++){
+                            countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
+                            if(countrySelected.getBorders().isEmpty()){
+                                i = 0;
+                            } else {
+                                if(crtAnswer.equals(countrySelected.getBorders().get(0))){
+                                    i = 0;
+                                } else if(secondAnswer.equals(countrySelected.getBorders().get(0))){
+                                    i = 0;
+                                } else {
+                                    thirdAnswer = countrySelected.getBorders().get(0);
+                                    i = 3;
+                                }
+                            }
+                        }
+                    } else {
+                        thirdAnswer = countrySelected.getBorders().get(0);
+                    }
                 }
                 if(fourthCountry.getBorders().isEmpty()){
                     for(int i = 0; i< 2 ; i++) {
                         countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
                         if (countrySelected.getBorders().isEmpty()) {
+                            i = 0;
+                        } else if(secondAnswer.equals(countrySelected.getBorders().get(0))){
+                            i = 0;
+                        } else if(thirdAnswer.equals(countrySelected.getBorders().get(0))){
                             i = 0;
                         } else {
                             fourthAnswer = countrySelected.getBorders().get(0);
@@ -354,7 +435,28 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     }
                 } else {
-                    fourthAnswer = fourthCountry.getBorders().get(0);
+                    countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
+                    if(crtAnswer.equals(countrySelected.getBorders().get(0))){
+                        for(int i = 0; i< 2 ; i++){
+                            countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
+                            if(countrySelected.getBorders().isEmpty()){
+                                i = 0;
+                            } else {
+                                if(crtAnswer.equals(countrySelected.getBorders().get(0))){
+                                    i = 0;
+                                } else if(secondAnswer.equals(countrySelected.getBorders().get(0))){
+                                    i = 0;
+                                } else if(thirdAnswer.equals(countrySelected.getBorders().get(0))){
+                                    i = 0;
+                                } else {
+                                    fourthAnswer = countrySelected.getBorders().get(0);
+                                    i = 3;
+                                }
+                            }
+                        }
+                    } else {
+                        fourthAnswer = countrySelected.getBorders().get(0);
+                    }
                 }
                 switch (correctAnswer){
                     case 1:
@@ -442,7 +544,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     }
                 }
-                if(crtAnswer.equals(thirdAnswer)){
+                if(crtAnswer.equals(thirdAnswer) || secondAnswer.equals(thirdAnswer)){
                     for(int i = 0; i< 2 ; i++) {
                         countrySelected = listResultFromAsyncTask.get(r3.nextInt(250 - 1) + 1);
                         if (crtAnswer.equals(countrySelected.getLanguages().get(0).getName())) {
@@ -455,7 +557,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     }
                 }
-                if(crtAnswer.equals(fourthAnswer)){
+                if(crtAnswer.equals(fourthAnswer)|| secondAnswer.equals(fourthAnswer) || thirdAnswer.equals(fourthAnswer)){
                     for(int i = 0; i< 2 ; i++) {
                         countrySelected = listResultFromAsyncTask.get(r3.nextInt(250 - 1) + 1);
                         if (crtAnswer.equals(countrySelected.getLanguages().get(0).getName())) {
@@ -555,7 +657,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             btnAnswer3 = findViewById(R.id.buttonAnswerThree);
             btnAnswer4 = findViewById(R.id.buttonAnswerFour);
             btnNext = findViewById(R.id.buttonNextQuiz);
-            btnFinish = findViewById(R.id.buttonFinishQuiz);
             ivFlag = findViewById(R.id.imageViewFlagQuiz);
             progressBar = findViewById(R.id.progressBarQuiz);
             progressBar.setVisibility(View.VISIBLE);

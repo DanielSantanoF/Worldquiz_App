@@ -2,7 +2,7 @@
 <resources>
     <color name="gold">#9E772A</color>
     <color name="silver">#807F7C</color>
-    <color name="bronze">#7d4e1f</color>
+    <color name="bronze">#7D4E1F</color>
     <color name="goldBackground">#D9BA64</color>
     <color name="silverBackground">#ADADAA</color>
     <color name="bronzeBackground">#A67646</color>

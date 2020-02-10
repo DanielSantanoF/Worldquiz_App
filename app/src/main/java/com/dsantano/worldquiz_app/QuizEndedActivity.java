@@ -56,9 +56,7 @@ public class QuizEndedActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(QuizEndedActivity.this, MainActivity.class);
-                i.putExtra("email", emailUser);
-                i.putExtra("photo", photoUser);
-                i.putExtra("name", nameUser);
+                i.putExtra("uid", uid);
                 startActivity(i);
                 finish();
             }

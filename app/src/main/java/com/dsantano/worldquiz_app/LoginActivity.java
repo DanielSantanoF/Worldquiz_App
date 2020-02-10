@@ -177,9 +177,7 @@ public class LoginActivity extends AppCompatActivity {
                                     .set(userfb);
                         }
                         Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                        i.putExtra("email", email);
-                        i.putExtra("photo", photo);
-                        i.putExtra("name", name);
+                        i.putExtra("uid", user.getUid());
                         startActivity(i);
                         finish();
                     } else {

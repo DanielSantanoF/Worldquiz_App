@@ -354,12 +354,33 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                         if(countrySelected.getBorders().isEmpty()){
                             i = 0;
                         } else {
-                            secondAnswer = countrySelected.getBorders().get(0);
-                            i = 3;
+                            if(crtAnswer.equals(countrySelected.getBorders().get(0))){
+                                i = 0;
+                            } else {
+                                secondAnswer = countrySelected.getBorders().get(0);
+                                i = 3;
+                            }
                         }
                     }
                 } else {
-                    secondAnswer = secondCountry.getBorders().get(0);
+                    countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
+                    if(crtAnswer.equals(countrySelected.getBorders().get(0))){
+                        for(int i = 0; i< 2 ; i++){
+                            countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
+                            if(countrySelected.getBorders().isEmpty()){
+                                i = 0;
+                            } else {
+                                if(crtAnswer.equals(countrySelected.getBorders().get(0))){
+                                    i = 0;
+                                } else {
+                                    secondAnswer = countrySelected.getBorders().get(0);
+                                    i = 3;
+                                }
+                            }
+                        }
+                    } else {
+                        secondAnswer = countrySelected.getBorders().get(0);
+                    }
                 }
                 if(thirdCountry.getBorders().isEmpty()){
                     for(int i = 0; i< 2 ; i++) {
@@ -367,17 +388,46 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                         if (countrySelected.getBorders().isEmpty()) {
                             i = 0;
                         } else {
-                            thirdAnswer = countrySelected.getBorders().get(0);
-                            i = 3;
+                            if(crtAnswer.equals(countrySelected.getBorders().get(0))){
+                                i = 0;
+                            } else if(secondAnswer.equals(countrySelected.getBorders().get(0))){
+                                i = 0;
+                            } else {
+                                thirdAnswer = countrySelected.getBorders().get(0);
+                                i = 3;
+                            }
                         }
                     }
                 } else {
-                    thirdAnswer = thirdCountry.getBorders().get(0);
+                    countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
+                    if(crtAnswer.equals(countrySelected.getBorders().get(0))){
+                        for(int i = 0; i< 2 ; i++){
+                            countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
+                            if(countrySelected.getBorders().isEmpty()){
+                                i = 0;
+                            } else {
+                                if(crtAnswer.equals(countrySelected.getBorders().get(0))){
+                                    i = 0;
+                                } else if(secondAnswer.equals(countrySelected.getBorders().get(0))){
+                                    i = 0;
+                                } else {
+                                    thirdAnswer = countrySelected.getBorders().get(0);
+                                    i = 3;
+                                }
+                            }
+                        }
+                    } else {
+                        thirdAnswer = countrySelected.getBorders().get(0);
+                    }
                 }
                 if(fourthCountry.getBorders().isEmpty()){
                     for(int i = 0; i< 2 ; i++) {
                         countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
                         if (countrySelected.getBorders().isEmpty()) {
+                            i = 0;
+                        } else if(secondAnswer.equals(countrySelected.getBorders().get(0))){
+                            i = 0;
+                        } else if(thirdAnswer.equals(countrySelected.getBorders().get(0))){
                             i = 0;
                         } else {
                             fourthAnswer = countrySelected.getBorders().get(0);
@@ -385,7 +435,28 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     }
                 } else {
-                    fourthAnswer = fourthCountry.getBorders().get(0);
+                    countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
+                    if(crtAnswer.equals(countrySelected.getBorders().get(0))){
+                        for(int i = 0; i< 2 ; i++){
+                            countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
+                            if(countrySelected.getBorders().isEmpty()){
+                                i = 0;
+                            } else {
+                                if(crtAnswer.equals(countrySelected.getBorders().get(0))){
+                                    i = 0;
+                                } else if(secondAnswer.equals(countrySelected.getBorders().get(0))){
+                                    i = 0;
+                                } else if(thirdAnswer.equals(countrySelected.getBorders().get(0))){
+                                    i = 0;
+                                } else {
+                                    fourthAnswer = countrySelected.getBorders().get(0);
+                                    i = 3;
+                                }
+                            }
+                        }
+                    } else {
+                        fourthAnswer = countrySelected.getBorders().get(0);
+                    }
                 }
                 switch (correctAnswer){
                     case 1:

@@ -7,16 +7,16 @@
     android:padding="16dp"
     tools:context=".QuizEndedActivity">
 
-    <ImageView
-        android:id="@+id/imageViewUserEndQuiz"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/finishAnimation"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="24dp"
-        android:contentDescription="@string/content_description_image_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true" />
 
     <TextView
         android:id="@+id/textViewGratsEndQuiz"
@@ -26,8 +26,8 @@
         android:text="@string/txt_end_quiz"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewUserEndQuiz"
-        app:layout_constraintStart_toStartOf="@+id/imageViewUserEndQuiz"
+        app:layout_constraintEnd_toEndOf="@+id/finishAnimation"
+        app:layout_constraintStart_toStartOf="@+id/finishAnimation"
         app:layout_constraintTop_toBottomOf="@+id/textViewUsernameQuizEnd" />
 
     <TextView
@@ -39,7 +39,7 @@
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/imageViewUserEndQuiz"
+        app:layout_constraintStart_toStartOf="@+id/textViewGratsEndQuiz"
         app:layout_constraintTop_toBottomOf="@+id/textViewGratsEndQuiz" />
 
     <TextView
@@ -86,9 +86,9 @@
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewUserEndQuiz"
-        app:layout_constraintStart_toStartOf="@+id/imageViewUserEndQuiz"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewUserEndQuiz" />
+        app:layout_constraintEnd_toEndOf="@+id/finishAnimation"
+        app:layout_constraintStart_toStartOf="@+id/finishAnimation"
+        app:layout_constraintTop_toBottomOf="@+id/finishAnimation" />
 
     <Button
         android:id="@+id/buttonGoToMenuEndQuiz"

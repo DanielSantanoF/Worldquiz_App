@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.dsantano.worldquiz_app.models.Users;
@@ -30,16 +31,18 @@ public class QuizEndedActivity extends AppCompatActivity {
     ImageView ivFoto;
     TextView txtScore, txtNumCorrect, txtUsername;
     Button btnBackToMenu;
+    LottieAnimationView animation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_ended);
 
+        animation = findViewById(R.id.finishAnimation);
+
         uid = getIntent().getExtras().get("uid").toString();
         puntuation = getIntent().getExtras().get("puntuation").hashCode();
 
-        ivFoto = findViewById(R.id.imageViewUserEndQuiz);
         txtUsername = findViewById(R.id.textViewUsernameQuizEnd);
         txtScore = findViewById(R.id.textViewPuntuationObtainedEndQuiz);
         txtNumCorrect = findViewById(R.id.textViewNumberOfCorrectAnswersEndQuiz);
@@ -78,13 +81,33 @@ public class QuizEndedActivity extends AppCompatActivity {
                             txtUsername.setText(nameUser);
                             txtScore.setText(puntuation + " " +getResources().getString(R.string.puntos));
                             txtNumCorrect.setText(totalCorrectAnswers + "/5 " + getResources().getString(R.string.question));
-                            Glide
-                                    .with(QuizEndedActivity.this)
-                                    .load(photoUser)
-                                    .transform(new CircleCrop())
-                                    .error(Glide.with(QuizEndedActivity.this).load(R.drawable.image_not_loaded_icon).transform(new CircleCrop()))
-                                    .thumbnail(Glide.with(QuizEndedActivity.this).load(R.drawable.loading_gif).transform(new CircleCrop()))
-                                    .into(ivFoto);
+
+                            switch (totalCorrectAnswers) {
+                                case 0:
+                                    animation.setAnimation("2068-error-cross.json");
+                                    animation.playAnimation();
+                                    break;
+                                case 1:
+                                    animation.setAnimation("2252-broken-stick-error.json");
+                                    animation.playAnimation();
+                                    break;
+                                case 2:
+                                    animation.setAnimation("7481-banana-boy.json");
+                                    animation.playAnimation();
+                                    break;
+                                case 3:
+                                    animation.setAnimation("1270-error.json");
+                                    animation.playAnimation();
+                                    break;
+                                case 4:
+                                    animation.setAnimation("1801-fireworks.json");
+                                    animation.playAnimation();
+                                    break;
+                                case 5:
+                                    animation.setAnimation("2497-trophy(1).json");
+                                    animation.playAnimation();
+                                    break;
+                            }
                         }
                         Log.d("FB", "Document exists!");
                     } else {

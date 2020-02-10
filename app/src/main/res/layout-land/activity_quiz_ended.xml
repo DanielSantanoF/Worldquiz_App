@@ -7,17 +7,17 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <ImageView
-        android:id="@+id/imageViewUserEndQuiz"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="60dp"
-        android:contentDescription="@string/content_description_image_view"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/finishAnimation"
+        android:layout_width="172dp"
+        android:layout_height="171dp"
+        android:layout_marginStart="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:layout_constraintVertical_bias="0.029"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true" />
 
     <TextView
         android:id="@+id/textViewGratsEndQuiz"
@@ -42,7 +42,7 @@
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageViewUserEndQuiz"
+        app:layout_constraintStart_toEndOf="@+id/finishAnimation"
         app:layout_constraintTop_toBottomOf="@+id/textViewGratsEndQuiz" />
 
     <TextView
@@ -67,8 +67,10 @@
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageViewUserEndQuiz"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPuntuationEndQuiz" />
+        app:layout_constraintBottom_toTopOf="@+id/buttonGoToMenuEndQuiz"
+        app:layout_constraintStart_toEndOf="@+id/finishAnimation"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPuntuationEndQuiz"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textViewNumberOfCorrectAnswersEndQuiz"
@@ -87,12 +89,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="4dp"
         android:text="TextView"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageViewUserEndQuiz"
+        app:layout_constraintStart_toEndOf="@+id/finishAnimation"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -101,7 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="4dp"
         android:background="@drawable/round_blue_bg"
         android:backgroundTint="@color/colorPrimaryDark"
         android:text="@string/btn_back_to_menu"

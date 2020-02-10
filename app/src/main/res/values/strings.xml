@@ -47,4 +47,5 @@
     <string name="countryFilter2">Filtrar por Idioma</string>
     <string name="hintSearch">Nombre, idioma, moneda...</string>
     <string name="search">Buscar</string>
+    <string name="txt_games_played">Partidas jugadas:</string>
 </resources>

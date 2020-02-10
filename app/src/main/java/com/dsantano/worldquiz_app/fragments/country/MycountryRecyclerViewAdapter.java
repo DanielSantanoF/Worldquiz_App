@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.dsantano.worldquiz_app.R;
@@ -13,11 +15,15 @@ import com.bumptech.glide.Glide;
 import com.dsantano.worldquiz_app.Interfaces.ICountryListener;
 import com.dsantano.worldquiz_app.models.Country;
 import com.mikhaellopez.circularimageview.CircularImageView;
+
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-public class MycountryRecyclerViewAdapter extends RecyclerView.Adapter<MycountryRecyclerViewAdapter.ViewHolder> {
+public class MycountryRecyclerViewAdapter extends RecyclerView.Adapter<MycountryRecyclerViewAdapter.ViewHolder> implements Filterable {
 
     private final List<Country> mValues;
+    private final List<Country> mValuesAll;
     private int layout;
     private Context ctx;
 
@@ -26,6 +32,7 @@ public class MycountryRecyclerViewAdapter extends RecyclerView.Adapter<Mycountry
         this.mValues = items;
         this.ctx = ctx;
         this.layout = layout;
+        this.mValuesAll = new ArrayList<>(mValues);
 
     }
 
@@ -68,10 +75,53 @@ public class MycountryRecyclerViewAdapter extends RecyclerView.Adapter<Mycountry
 
     }
 
+
+
     @Override
     public int getItemCount() {
         return mValues.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return filter;
+    }
+
+    Filter filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Country> filteredList = new ArrayList<Country>();
+
+            if(constraint.toString().isEmpty()) {
+                filteredList.addAll(mValuesAll);
+            } else {
+                for(Country country: mValuesAll) {
+                    for(int i = 0; i < country.getLanguages().size(); i++) {
+                        if(country.getLanguages().get(i).getName().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                            filteredList.add(country);
+                        }
+                    }
+
+//                    for(int i = 0; i < country.getCurrencies().size(); i++) {
+//                        if(country.getCurrencies().get(i).getName().toLowerCase().contains(constraint.toString().toLowerCase())) {
+//                            filteredList.add(country);
+//                        }
+//                    }
+                }
+            }
+
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredList;
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            mValues.clear();
+            mValues.addAll((Collection<? extends Country>) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
@@ -89,4 +139,5 @@ public class MycountryRecyclerViewAdapter extends RecyclerView.Adapter<Mycountry
         }
 
     }
+
 }

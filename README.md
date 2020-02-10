@@ -10,6 +10,13 @@ Proyecto sobre datos de paises y un quiz en base a ellos.
 ***
 
 
+#### Instalar la aplicación
+* O bien instalarla mediante el ide
+* O usar el apk de la aplicación localizado en `/app/release` el archivo `app-release.apk`
+
+***
+
+
 #### Proyecto realizado por grupos cooperativos en clase
 ##### Realizado por:
 * [Alejandro Díaz Santos](https://github.com/aledi99 "Alejandro Díaz Santos perfil de GitHub")

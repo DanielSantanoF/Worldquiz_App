@@ -85,7 +85,20 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private void setUpClusterManager(GoogleMap googleMap){
         clusterManager = new ClusterManager<CountryLocation>(v.getContext(), googleMap);
         googleMap.setOnCameraIdleListener(clusterManager);// 4
-        clusterManager.setRenderer(new MarkerClusterRenderer(getContext(), googleMap, clusterManager));
+        clusterManager.setRenderer(new MarkerClusterRenderer(getActivity(), googleMap, clusterManager));
+        googleMap.setInfoWindowAdapter(clusterManager.getMarkerManager());
+
+        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                CountryLocation c = (CountryLocation) marker.getTag();
+                Intent i = new Intent(getActivity(),
+                        CountryDetailActivity.class);
+                i.putExtra("alpha", c.getIsoCode());
+                getActivity().startActivity(i);
+            }
+        });
+
 
         service = CountryGenerator.createService(CountryService.class);
 
@@ -98,19 +111,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                     listaCountry = response.body();
                     for (final Country c : listaCountry){
                         if (!c.getLatlng().isEmpty()){
-                            //items.add(new CountryLocation(c.getName(), new LatLng(c.getLatlng().get(0), c.getLatlng().get(1)), c.alpha2Code));
                             Glide.with(getContext())
                                     .asBitmap()
                                     .load("https://www.countryflags.io/"+c.alpha2Code+"/flat/64.png")
                                     .into(new CustomTarget<Bitmap>() {
                                         @Override
                                         public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-
                                             clusterManager.addItem(new CountryLocation(c.getName(), new LatLng(c.getLatlng().get(0), c.getLatlng().get(1)), c.alpha2Code,resource));
                                         }
                                         @Override
                                         public void onLoadCleared(@Nullable Drawable placeholder) {
-//
                                         }
                                     });
                         }

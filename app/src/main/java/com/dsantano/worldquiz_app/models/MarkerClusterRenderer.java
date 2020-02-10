@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.dsantano.worldquiz_app.CountryDetailActivity;
@@ -47,6 +46,9 @@ public class MarkerClusterRenderer extends DefaultClusterRenderer<CountryLocatio
     }
 
 
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+    }
 
     @Override
     protected void onClusterItemRendered(CountryLocation clusterItem, Marker marker) {
@@ -57,10 +59,5 @@ public class MarkerClusterRenderer extends DefaultClusterRenderer<CountryLocatio
     @Override
     public boolean onClusterClick(Cluster<CountryLocation> cluster) {
         return false;
-    }
-
-    @Override
-    public void onInfoWindowClick(Marker marker) {
-        Toast.makeText(ctx, "pepe", Toast.LENGTH_SHORT).show();
     }
 }

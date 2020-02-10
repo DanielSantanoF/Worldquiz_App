@@ -364,6 +364,16 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 } else {
                     countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
+                    if(countrySelected.getBorders().isEmpty()){
+                        for(int i = 0; i< 2 ; i++){
+                            countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
+                            if(countrySelected.getBorders().isEmpty()){
+                                i = 0;
+                            } else {
+                                i = 3;
+                            }
+                        }
+                    }
                     if(crtAnswer.equals(countrySelected.getBorders().get(0))){
                         for(int i = 0; i< 2 ; i++){
                             countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
@@ -400,6 +410,16 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 } else {
                     countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
+                    if(countrySelected.getBorders().isEmpty()){
+                        for(int i = 0; i< 2 ; i++){
+                            countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
+                            if(countrySelected.getBorders().isEmpty()){
+                                i = 0;
+                            } else {
+                                i = 3;
+                            }
+                        }
+                    }
                     if(crtAnswer.equals(countrySelected.getBorders().get(0))){
                         for(int i = 0; i< 2 ; i++){
                             countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
@@ -436,6 +456,16 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 } else {
                     countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
+                    if(countrySelected.getBorders().isEmpty()){
+                        for(int i = 0; i< 2 ; i++){
+                            countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);
+                            if(countrySelected.getBorders().isEmpty()){
+                                i = 0;
+                            } else {
+                                i = 3;
+                            }
+                        }
+                    }
                     if(crtAnswer.equals(countrySelected.getBorders().get(0))){
                         for(int i = 0; i< 2 ; i++){
                             countrySelected = listResultFromAsyncTask.get(r2.nextInt(250 - 1) + 1);

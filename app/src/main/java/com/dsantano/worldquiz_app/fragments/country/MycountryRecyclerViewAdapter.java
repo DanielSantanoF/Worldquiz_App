@@ -57,8 +57,12 @@ public class MycountryRecyclerViewAdapter extends RecyclerView.Adapter<Mycountry
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
 
-        holder.nombre.setText(holder.mItem.getName());
-
+        String nombreF = holder.mItem.getName();
+        if (nombreF.length() > 20){
+            holder.nombre.setText(nombreF.substring(0,19)+"...");
+        }else {
+            holder.nombre.setText(nombreF);
+        }
 
         //CircularImageView circularImageView = holder.mView.findViewById(R.id.imageViewBandera);
         //circularImageView.setCircleColor(Color.LTGRAY);

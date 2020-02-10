@@ -131,6 +131,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void loadQuestion(int numQuestionToLoad){
+        answer = 1;
         if(numQuestionToLoad >= 5){
             btnNext.setText(R.string.btn_finish_quiz);
         }

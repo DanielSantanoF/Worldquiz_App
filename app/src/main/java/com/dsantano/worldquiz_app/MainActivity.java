@@ -25,7 +25,7 @@ import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity implements ICountryListener {
 
-    String email, photo, name;
+    String uid;
     FirebaseAuth mAuth;
     GoogleSignInClient mGoogleLogin;
 
@@ -43,9 +43,7 @@ public class MainActivity extends AppCompatActivity implements ICountryListener 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        email = getIntent().getExtras().get("email").toString();
-        photo = getIntent().getExtras().get("photo").toString();
-        name = getIntent().getExtras().get("name").toString();
+        uid = getIntent().getExtras().get("uid").toString();
 
     }
 
@@ -61,9 +59,7 @@ public class MainActivity extends AppCompatActivity implements ICountryListener 
         switch (item.getItemId()){
             case R.id.menuItemMyUser:
                 Intent i = new Intent(MainActivity.this, UserLoggedDetailActivity.class);
-                i.putExtra("email",email);
-                i.putExtra("name",name);
-                i.putExtra("photo",photo);
+                i.putExtra("uid", uid);
                 startActivity(i);
                 return true;
             case R.id.menuItemLogOut:

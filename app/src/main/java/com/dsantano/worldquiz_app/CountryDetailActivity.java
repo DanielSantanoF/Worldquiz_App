@@ -114,6 +114,7 @@ public class CountryDetailActivity extends AppCompatActivity {
                     Glide.with(CountryDetailActivity.this)
                             .load("https://www.countryflags.io/"+response.body().alpha2Code+"/flat/64.png")
                             .thumbnail(Glide.with(CountryDetailActivity.this).load(R.drawable.loading_gif).transform(new CircleCrop()))
+                            .centerCrop()
                             .into(bandera);
                     new DowloadPhotosOfCountry().execute();
                 } else {

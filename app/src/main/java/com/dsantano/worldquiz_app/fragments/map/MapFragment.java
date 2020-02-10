@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
@@ -23,15 +24,16 @@ import com.dsantano.worldquiz_app.CountryDetailActivity;
 import com.dsantano.worldquiz_app.R;
 import com.dsantano.worldquiz_app.models.Country;
 import com.dsantano.worldquiz_app.models.CountryLocation;
+import com.dsantano.worldquiz_app.models.MarkerClusterRenderer;
 import com.dsantano.worldquiz_app.retrofit.generator.CountryGenerator;
 import com.dsantano.worldquiz_app.retrofit.services.CountryService;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.clustering.Cluster;
+import com.google.maps.android.clustering.ClusterItem;
 import com.google.maps.android.clustering.ClusterManager;
 
 import java.util.ArrayList;
@@ -53,6 +55,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private Marker m;
     private ClusterManager<CountryLocation> mClusterManager;
     private List<CountryLocation> items = new ArrayList<CountryLocation>();
+    private ClusterManager<CountryLocation> clusterManager;
 
 
     public MapFragment() {
@@ -75,7 +78,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-        mMap = googleMap;
+        setUpClusterManager(googleMap);
+
+    }
+
+    private void setUpClusterManager(GoogleMap googleMap){
+        clusterManager = new ClusterManager<CountryLocation>(v.getContext(), googleMap);
+        googleMap.setOnCameraIdleListener(clusterManager);// 4
+        clusterManager.setRenderer(new MarkerClusterRenderer(getContext(), googleMap, clusterManager));
 
         service = CountryGenerator.createService(CountryService.class);
 
@@ -86,54 +96,28 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             public void onResponse(Call<List<Country>> call, Response<List<Country>> response) {
                 if (response.isSuccessful()) {
                     listaCountry = response.body();
-
                     for (final Country c : listaCountry){
                         if (!c.getLatlng().isEmpty()){
-                            items.add(new CountryLocation(c.getName(), new LatLng(c.getLatlng().get(0), c.getLatlng().get(1))));
-//                            Glide.with(getContext())
-//                                    .asBitmap()
-//                                    .load("https://www.countryflags.io/"+c.alpha2Code+"/flat/64.png")
-//                                    .into(new CustomTarget<Bitmap>() {
-//                                        @Override
-//                                        public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-//                                              m = mMap.addMarker(new MarkerOptions()
-//                                                    .position(new LatLng(c.getLatlng().get(0), c.getLatlng().get(1)))
-//                                                    .title(c.getName())
-//                                                    .icon(BitmapDescriptorFactory.fromBitmap(resource))
-//                                                    .snippet("Capital: "+c.getCapital())
-//                                            );
-//                                            m.setTag(c.alpha2Code);
-//                                            setUpClusterManager(mMap);
-//                                        }
-//
-//                                        @Override
-//                                        public void onLoadCleared(@Nullable Drawable placeholder) {
-//
-//                                        }
-//                                    });
-                        }
+                            //items.add(new CountryLocation(c.getName(), new LatLng(c.getLatlng().get(0), c.getLatlng().get(1)), c.alpha2Code));
+                            Glide.with(getContext())
+                                    .asBitmap()
+                                    .load("https://www.countryflags.io/"+c.alpha2Code+"/flat/64.png")
+                                    .into(new CustomTarget<Bitmap>() {
+                                        @Override
+                                        public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
 
+                                            clusterManager.addItem(new CountryLocation(c.getName(), new LatLng(c.getLatlng().get(0), c.getLatlng().get(1)), c.alpha2Code,resource));
+                                        }
+                                        @Override
+                                        public void onLoadCleared(@Nullable Drawable placeholder) {
+//
+                                        }
+                                    });
+                        }
                     }
-                    Log.i("lista",""+response.body().size());
                 } else {
                     Toast.makeText(v.getContext(), "Error al realizar la petición", Toast.LENGTH_SHORT).show();
                 }
-
-//                mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-//                    @Override
-//                    public boolean onMarkerClick(Marker marker) {
-//                        String isoCode = marker.getTag().toString();
-//                        Intent i = new Intent(getContext(),
-//                                CountryDetailActivity.class);
-//                        i.putExtra("alpha", isoCode);
-//
-//                        startActivity(i);
-//
-//                        return false;
-//                    }
-//                });
-
-                setUpClusterManager(mMap);
             }
 
             @Override
@@ -142,18 +126,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 Toast.makeText(v.getContext(), "Error al realizar la petición", Toast.LENGTH_SHORT).show();
             }
         });
-
-    }
-
-    private void setUpClusterManager(GoogleMap googleMap){
-        ClusterManager<CountryLocation> clusterManager = new ClusterManager(v.getContext(), googleMap);  // 3
-        googleMap.setOnCameraIdleListener(clusterManager);
-
-
-        clusterManager.addItems(items);  // 4
         clusterManager.cluster();  // 5
     }
-
 
 
 }

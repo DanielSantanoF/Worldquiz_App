@@ -20,13 +20,17 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.dsantano.worldquiz_app.EfectivityComparator;
 import com.dsantano.worldquiz_app.Interfaces.ICountryListener;
 import com.dsantano.worldquiz_app.R;
+import com.dsantano.worldquiz_app.ScoreComparator;
+import com.dsantano.worldquiz_app.fragments.user.MyrankingRecyclerViewAdapter;
 import com.dsantano.worldquiz_app.models.Country;
 import com.dsantano.worldquiz_app.retrofit.generator.CountryGenerator;
 import com.dsantano.worldquiz_app.retrofit.services.CountryService;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -45,6 +49,7 @@ public class countryFragment extends Fragment {
     private CountryService service;
     private Context context;
     private  RecyclerView recyclerView;
+    private boolean order;
 
 
     public countryFragment() {
@@ -66,10 +71,11 @@ public class countryFragment extends Fragment {
         inflater.inflate(R.menu.country_menu, menu);
         final MenuItem searchItem = menu.findItem(R.id.filter);
         final SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setQueryHint(getResources().getString(R.string.hintSearch));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                return false;
+                return true;
             }
 
             @Override
@@ -145,7 +151,8 @@ public class countryFragment extends Fragment {
         adapter = new MycountryRecyclerViewAdapter(
                 context,
                 R.layout.fragment_country,
-                lista
+                lista,
+                true
         );
         recyclerView.setAdapter(adapter);
     }

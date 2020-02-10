@@ -43,4 +43,8 @@
     <string name="question">preguntas</string>
     <string name="btn_back_to_menu">Volver al menú</string>
     <string name="coin">Filtrar por Moneda</string>
+    <string name="countryFilter">Filtar por Moneda</string>
+    <string name="countryFilter2">Filtrar por Idioma</string>
+    <string name="hintSearch">Nombre, idioma, moneda...</string>
+    <string name="search">Buscar</string>
 </resources>

@@ -42,4 +42,9 @@
     <string name="txt_correct_answers">Correct answers:</string>
     <string name="question">questions</string>
     <string name="btn_back_to_menu">Back to menu</string>
+    <string name="coin">Filter By Coin</string>
+    <string name="countryFilter">Filter by Currency</string>
+    <string name="countryFilter2">Filter by Language</string>
+    <string name="hintSearch">Name, language, currency...</string>
+    <string name="search">Search</string>
 </resources>

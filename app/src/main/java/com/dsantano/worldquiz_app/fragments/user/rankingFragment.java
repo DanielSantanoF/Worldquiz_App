@@ -142,7 +142,6 @@ public class rankingFragment extends Fragment {
                             true);
 
                     recyclerView.setAdapter(myrankingRecyclerViewAdapter);
-                    Toast.makeText(mContext, getResources().getString(R.string.effectivity), Toast.LENGTH_SHORT).show();
                     item.setTitle(getResources().getString(R.string.filteringS));
                 }
                 order = !order;

@@ -32,10 +32,10 @@
     <string name="tittle_question_four">¿De que país es la bandera </string>
     <string name="tittle_question_five">¿Cual es el idioma de </string>
     <string name="dont_have_border">No tiene</string>
-    <string name="quit">¿Salir del quiz?</string>
-    <string name="really_quit">Si sales del quiz contara como una partida jugada pero con puntuación de 0</string>
-    <string name="yes">Si salir</string>
-    <string name="no">No seguir jugando</string>
+    <string name="quit">¿Quieres salir del quiz?</string>
+    <string name="really_quit">Si sales del quiz contará como una partida jugada pero con una puntuación de 0.</string>
+    <string name="yes">Sí, salir</string>
+    <string name="no">No, seguir jugando</string>
     <string name="txt_end_quiz">¡Enhorabuena, has terminado el test!</string>
     <string name="txt_puntuation">Puntuación:</string>
     <string name="puntos">Puntos</string>
